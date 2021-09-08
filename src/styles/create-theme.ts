@@ -23,16 +23,7 @@ const theme = createTheme({
         }
     },
     typography: {
-        fontFamily: "'Roboto', sans-serif",
-        h1: {
-
-        },
-        h2: {
-            
-        },
-        h3: {
-            fontWeight: 500
-        }
+        fontFamily: "'Azeret Mono', monospace"
     }
 })
 
