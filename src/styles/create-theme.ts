@@ -12,6 +12,12 @@ const darkTheme = {
     tradicTwo: "#c27e57"
 }
 
+const fontFams = {
+    montserrat: "'Montserrat', sans-serif",
+    azeretMono: "'Azeret Mono', monospace",
+    roboto: "'Roboto', sans-serif;"
+};
+
 const theme = createTheme({
     palette: {
         type: "dark",
@@ -23,7 +29,7 @@ const theme = createTheme({
         }
     },
     typography: {
-        fontFamily: "'Azeret Mono', monospace"
+        fontFamily: fontFams.montserrat
     }
 })
 
