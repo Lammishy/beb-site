@@ -1,36 +1,40 @@
-import React from 'react';
-import { format, differenceInDays, compareAsc } from "date-fns";
+import React, { useState } from 'react';
+import Button from "@material-ui/core/Button";
 
-// Constants
-import { DATE_FORMAT } from 'constants/constants';
+// Theme / styles 
+import theme from "./styles/create-theme";
+import { ThemeProvider } from '@material-ui/styles';
+import { CssBaseline } from "@material-ui/core";
 
-import './App.scss';
-
+// Components
+import AuthPage from "components/pages/AuthPage";
 
 function App() {
-  const openDeadlineReminder = () => {
-    const deadline = new Date(2021, 8, 19); // month is 0-indexed
-    const today = new Date();
+  /**
+   * Handles Routing of pages 
+   * Global styles
+   */
 
-    if (compareAsc(deadline, today) !== 1) {
-      alert("You passed your deadline boi!");
-    } else {
-      const daysLeft = differenceInDays(deadline, today);
-      alert(`You have your deadline is ${format(deadline, DATE_FORMAT)} and you have ${daysLeft} days left.`);
-    }
+  const [loggedIn, setloggedIn] = useState<Boolean>(false);
+
+  const handleLoginStatus = (loginSuccess: boolean) => {
+    if (loginSuccess) setloggedIn(true);
   }
 
   return (
-    <div className="App">
-      <div className="container">
-        <header>
-          <h1>App initialized with Typescript and Bootstrap 5.1.0</h1>
-          <div className="w-100 d-flex">
-            <button className="btn btn-lg btn-dark ms-auto" onClick={openDeadlineReminder}>Click Me!</button>
-          </div>
-        </header>
-      </div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline/>
+      {!loggedIn && <AuthPage handleLoginStatus={handleLoginStatus}/>}
+      {/* <Page>
+          <header>
+            <h1>App initialized with Typescript and Material UI (not typography element)</h1>
+            <div className="w-100 d-flex">
+              <Button variant="contained" color="secondary" onClick={openDeadlineReminder}>Click Me!</Button>
+            </div>
+          </header>
+      </Page> */}
+    </ThemeProvider>
+
   );
 }
 
