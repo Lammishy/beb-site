@@ -132,7 +132,7 @@ const SignIn = (props: any) => {
                         error={Boolean(pwError)} 
                         helperText={Boolean(pwError) ? pwError : ""} 
                         required />
-                    <Button variant="contained" color="primary" type="submit" >
+                    <Button variant="contained" color="primary" type="submit" disableElevation>
                         Begin Journey
                     </Button>
                 </form>
