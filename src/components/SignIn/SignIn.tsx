@@ -1,4 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+
+
+// Actions
+import { loginSuccess, loginFail } from "actions/actions"; // login
+import { setUsername, setUsernameSuccess, setUsernameFail, setUserFieldTouched } from "actions/actions"; // username
+import { setPassword, setPasswordSuccess, setPasswordFail, setPasswordFieldTouched } from "actions/actions"; // password
+
+// Selectors
+import { getUsernameStatusSelector, getPasswordStatusSelector } from "selectors/selectors";
+
+import { useSelector, useDispatch } from "react-redux";
+
+
 
 // Common Components
 import Button from "@material-ui/core/Button";
@@ -51,53 +64,50 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const SignIn = (props: any) => {
+    // Styles
     const classes = useStyles();
 
-    // Validation Logic
-    const [username, setUsername] = useState<string>("");
-    const [userError, setUserError] = useState<string>("");
+    // Form-related information
+    const usernameInfo = useSelector(getUsernameStatusSelector);
+    const pwInfo = useSelector(getPasswordStatusSelector);
 
-    const [password, setPassword] = useState<string>("");
-    const [pwError, setPwError] = useState<string>("");
+    const dispatch = useDispatch(); // allows us to query the store
 
-    const { handleLoginStatus }: { handleLoginStatus: any} = props;
+    const loginHandlerStore = (event: any) => {
+        event.preventDefault();
 
-
-    const loginHandler = (event: any) => {
-        event.preventDefault(); // prevent site from reloading
-        if (username !== BEB_CREDENTIALS.user) {
-            // set user error msg
-            setUserError("Dis wrong user!!");
+        // Validate Login
+        if (usernameInfo.username === BEB_CREDENTIALS.user && pwInfo.pw === BEB_CREDENTIALS.pw) {
+            dispatch(loginSuccess());
         } else {
-            // set user error msg to empty string
-            setUserError(""); // will therefore evaluate error on TextField to false
+            dispatch(loginFail());
         }
 
-        if (password !== BEB_CREDENTIALS.pw) {
-            // set pw error msg 
-            setPwError("Hint: Dis what beb like to do to beeb when eating together");
+        // Fields only considered touched after submit button clicked
+        if (!usernameInfo.userFieldTouched) dispatch(setUserFieldTouched());
+        if (!pwInfo.pwFieldTouched) dispatch(setPasswordFieldTouched());
+
+        // Validate username
+        if (usernameInfo.username === BEB_CREDENTIALS.user) {
+            dispatch(setUsernameSuccess());
         } else {
-            // set pw error msg to empty string
-            setPwError(""); // will therefore evaluate error on TextField to false
+            dispatch(setUsernameFail("Dis not be your name beb"));
         }
 
-        if (username === BEB_CREDENTIALS.user && password === BEB_CREDENTIALS.pw) {
-            // clear error msgs 
-            setUserError("");
-            setPwError("");
-
-            // pass login
-            const successfulLogin = !userError && !pwError; // successfully login if both user and pass correct
-            handleLoginStatus(successfulLogin); // from app (handles state of hiding login)
+        // Validate password
+        if (pwInfo.pw === BEB_CREDENTIALS.pw) {
+            dispatch(setPasswordSuccess());
+        } else {
+            dispatch(setPasswordFail("Hint: What the beb loves to do to beeb when eating"));
         }
     }
 
     const onUsernameChange = ({ target: { value } }: { target: { value: string } }) => {
-        setUsername(value);
+        dispatch(setUsername(value));
     }
 
     const onPasswordChange = ({ target: { value } }: { target: { value: string } }) => {
-        setPassword(value);
+        dispatch(setPassword(value));
     }
 
     return (
@@ -115,22 +125,22 @@ const SignIn = (props: any) => {
 
             {/* Buttons */}
             <CardActions className={classes.cardActions}>
-                <form className={classes.form} noValidate onSubmit={loginHandler} autoComplete="off">
+                <form className={classes.form} noValidate onSubmit={loginHandlerStore} autoComplete="off">
                     <TextField
                         id="username"
                         variant="outlined"
-                        label="Beb username" 
-                        onChange={onUsernameChange} 
-                        error={Boolean(userError)} 
-                        helperText={userError} 
+                        label="Beb username"
+                        onChange={onUsernameChange}
+                        error={!usernameInfo.usernameIsValid && usernameInfo.userFieldTouched}
+                        helperText={usernameInfo?.errorMsg}
                         required />
                     <TextField
                         id="password"
                         variant="outlined"
-                        label="Beb pass" 
-                        onChange={onPasswordChange} 
-                        error={Boolean(pwError)} 
-                        helperText={Boolean(pwError) ? pwError : ""} 
+                        label="Beb pass"
+                        onChange={onPasswordChange}
+                        error={!pwInfo.pwIsValid && pwInfo.pwFieldTouched}
+                        helperText={pwInfo?.errorMsg}
                         required />
                     <Button variant="contained" color="primary" type="submit" disableElevation>
                         Begin Journey
