@@ -67,41 +67,73 @@ const SignIn = (props: any) => {
     // Styles
     const classes = useStyles();
 
-    // Form-related information
+    // allows us to query the store
+    const dispatch = useDispatch();
+
+    // Form-related information from store
     const usernameInfo = useSelector(getUsernameStatusSelector);
     const pwInfo = useSelector(getPasswordStatusSelector);
 
-    const dispatch = useDispatch(); // allows us to query the store
+    // Controls
+    const usernameErrorMsg = `You.. dunno your name?`;
+    const pwErrorMsg = `What the beb like to do to beeb when eatin`;
 
+    // Functions 
     const loginHandlerStore = (event: any) => {
         event.preventDefault();
 
-        // Validate Login
+        // Fields only considered touched after submit button clicked.
+        // 
+        if (!usernameInfo.userFieldTouched) dispatch(setUserFieldTouched());
+        if (!pwInfo.pwFieldTouched) dispatch(setPasswordFieldTouched());
+
+        // Validate Login (this logic needs to be reworked in the future)
+        validateLoginStatus();
+        // Validate username
+        validateUsernameFieldState();
+        // Validate password
+        validatePasswordFieldState();
+
+    }
+
+    /**
+     * Validations
+     */
+    const validateLoginStatus = () => {
+        /**
+         * TODO: FUTURE PLAN
+         * Find a way to use usernameIsValid and pwIsValid store values instead. 
+         * The issue here is that you only set usernameIsValid && pwIsValid = true onSubmit
+         * Therefore, this line of code is unable to get the latest usernameinfo.usernameIsValid & pwInfo.pwIsValid
+         */
         if (usernameInfo.username === BEB_CREDENTIALS.user && pwInfo.pw === BEB_CREDENTIALS.pw) {
             dispatch(loginSuccess());
         } else {
             dispatch(loginFail());
         }
+    }
 
-        // Fields only considered touched after submit button clicked
-        if (!usernameInfo.userFieldTouched) dispatch(setUserFieldTouched());
-        if (!pwInfo.pwFieldTouched) dispatch(setPasswordFieldTouched());
+    const validateUsernameFieldState = () => {
 
-        // Validate username
         if (usernameInfo.username === BEB_CREDENTIALS.user) {
             dispatch(setUsernameSuccess());
         } else {
-            dispatch(setUsernameFail("Dis not be your name beb"));
-        }
-
-        // Validate password
-        if (pwInfo.pw === BEB_CREDENTIALS.pw) {
-            dispatch(setPasswordSuccess());
-        } else {
-            dispatch(setPasswordFail("Hint: What the beb loves to do to beeb when eating"));
+            dispatch(setUsernameFail(usernameErrorMsg));
         }
     }
 
+    const validatePasswordFieldState = () => {
+        if (pwInfo.pw === BEB_CREDENTIALS.pw) {
+            dispatch(setPasswordSuccess());
+        } else {
+            dispatch(setPasswordFail(pwErrorMsg));
+        }
+    }
+
+
+    /**
+     * Form Controls
+     */
     const onUsernameChange = ({ target: { value } }: { target: { value: string } }) => {
         dispatch(setUsername(value));
     }
