@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
+    "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -13,6 +14,8 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/react-redux": "^7.1.18",
+    "@types/redux": "^3.6.0",
     "date-fns": "^2.23.0",
     "lodash": "^4.17.21",
     "node-sass": "5.0.0",
@@ -20,6 +23,7 @@
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "redux": "^4.1.1",
+    "redux-saga": "^1.1.3",
     "reselector": "^0.23.0",
     "typescript": "^4.4.2",
     "web-vitals": "^1.0.1"
