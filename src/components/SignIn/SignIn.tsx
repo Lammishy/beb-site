@@ -65,10 +65,14 @@ const useStyles = makeStyles((theme) => ({
 
 const SignIn = (props: any) => {
     // Styles
-    const classes = useStyles();
+    let classes = useStyles();
+    const { frameClass } = props; // used as workaround to inherit additional styles from an animation HOC (if any)
 
     // allows us to query the store
     const dispatch = useDispatch();
+
+    // Higher Order Component functions
+    const { animate } = props;
 
     // Form-related information from store
     const usernameInfo = useSelector(getUsernameStatusSelector);
@@ -93,7 +97,6 @@ const SignIn = (props: any) => {
         validateUsernameFieldState();
         // Validate password
         validatePasswordFieldState();
-
     }
 
     /**
@@ -109,6 +112,7 @@ const SignIn = (props: any) => {
         if (usernameInfo.username === BEB_CREDENTIALS.user && pwInfo.pw === BEB_CREDENTIALS.pw) {
             dispatch(loginSuccess());
         } else {
+            if (animate) animate(); // execute animation if higher order function exists. in this project, ONLY login component inherits a shaking animation
             dispatch(loginFail());
         }
     }
@@ -143,7 +147,7 @@ const SignIn = (props: any) => {
     }
 
     return (
-        <Card className={classes.root} variant="outlined">
+        <Card className={classes.root + ` ${frameClass ? frameClass : ''}`} variant="outlined">
             <CardContent>
                 {/* Locked Out Icon */}
                 <Avatar className={classes.avatar}>

@@ -7,6 +7,7 @@ import { openDeadlineReminder } from "constants/constants";
 import Page from "components/layout/Page/Page";
 import SignIn from "components/SignIn/SignIn"
 import { Button } from "@material-ui/core";
+import makeShakeValidationErrorAnimation from "animations/shake-animation";
 
 /**
  * Page that serves as authentication. Only allows beb to log in
@@ -17,11 +18,12 @@ import { Button } from "@material-ui/core";
     * 
  */
 
+const ShakeAnimationSignIn = makeShakeValidationErrorAnimation(SignIn);
+
 const AuthPage = (props: any) => {
-    const { handleLoginStatus } = props;
     return (
         <Page>
-            <SignIn handleLoginStatus={handleLoginStatus}/>
+            <ShakeAnimationSignIn />
             <Button onClick={openDeadlineReminder} variant="contained" color="secondary"> Deadline </Button>
         </Page>
     )
