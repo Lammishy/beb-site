@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/beb-site/static/js/main.0a954ff4.chunk.js",
-    "main.js.map": "/beb-site/static/js/main.0a954ff4.chunk.js.map",
+    "main.js": "/beb-site/static/js/main.522a2d92.chunk.js",
+    "main.js.map": "/beb-site/static/js/main.522a2d92.chunk.js.map",
     "runtime-main.js": "/beb-site/static/js/runtime-main.a6616588.js",
     "runtime-main.js.map": "/beb-site/static/js/runtime-main.a6616588.js.map",
-    "static/js/2.13cab4ba.chunk.js": "/beb-site/static/js/2.13cab4ba.chunk.js",
-    "static/js/2.13cab4ba.chunk.js.map": "/beb-site/static/js/2.13cab4ba.chunk.js.map",
+    "static/js/2.e4b72528.chunk.js": "/beb-site/static/js/2.e4b72528.chunk.js",
+    "static/js/2.e4b72528.chunk.js.map": "/beb-site/static/js/2.e4b72528.chunk.js.map",
     "index.html": "/beb-site/index.html",
-    "static/js/2.13cab4ba.chunk.js.LICENSE.txt": "/beb-site/static/js/2.13cab4ba.chunk.js.LICENSE.txt"
+    "static/js/2.e4b72528.chunk.js.LICENSE.txt": "/beb-site/static/js/2.e4b72528.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a6616588.js",
-    "static/js/2.13cab4ba.chunk.js",
-    "static/js/main.0a954ff4.chunk.js"
+    "static/js/2.e4b72528.chunk.js",
+    "static/js/main.522a2d92.chunk.js"
   ]
 }
