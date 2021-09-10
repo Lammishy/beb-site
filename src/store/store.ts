@@ -10,7 +10,8 @@ function configureAppStore() {
   const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(logger)
+      getDefaultMiddleware().concat(logger),
+    devTools: process.env.NODE_ENV !== "production"
   });
 
   return store;
