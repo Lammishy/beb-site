@@ -28,21 +28,18 @@ const TodoPage = (props: any) => {
     const allItems: taskItem[] = [
         {
             key: "1",
-            task: "Finish standup",
+            task: "Yesterday was working on AQA and number throttle button",
         },
         {
             key: "2",
-            task: "Get number button throttling approved and tested on staging",
+            task: "Number Button throttle task has been approved, will merge to staging, do the necessary tests on all the affected flows and then create a PR to develop",
         },
         {
             key: "3",
-            task: "Do one test migration task for AQA",
-        },
-        // {
-        //     key: "4",
-        //     task: "Finish migrating login logic to redux, reselector and redux saga",
-        // }
+            task: "Continue with working on migrating a test case from old webfront to new webfront",
+        }
     ];
+
     return (
         <Page>
             <List>
