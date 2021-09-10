@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import map from "lodash/map";
 // Layout
 import Page from "components/layout/Page/Page";
