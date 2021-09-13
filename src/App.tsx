@@ -21,7 +21,7 @@ function App() {
 
   const { isLoggedIn } = useSelector(getLoginStatusSelector);
 
-  console.log("Rendered");
+  console.log("App rendered");
 
   return (
     <ThemeProvider theme={theme}>
