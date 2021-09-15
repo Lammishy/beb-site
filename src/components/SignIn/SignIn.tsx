@@ -1,6 +1,3 @@
-import React from "react";
-
-
 // Actions
 import { loginSuccess, loginFail } from "actions/actions"; // login
 import { setUsername, setUsernameSuccess, setUsernameFail, setUserFieldTouched } from "actions/actions"; // username
@@ -10,8 +7,6 @@ import { setPassword, setPasswordSuccess, setPasswordFail, setPasswordFieldTouch
 import { getUsernameStatusSelector, getPasswordStatusSelector } from "selectors/selectors";
 
 import { useSelector, useDispatch } from "react-redux";
-
-
 
 // Common Components
 import Button from "@material-ui/core/Button";
@@ -111,6 +106,7 @@ const SignIn = (props: any) => {
          */
         if (usernameInfo.username === BEB_CREDENTIALS.user && pwInfo.pw === BEB_CREDENTIALS.pw) {
             dispatch(loginSuccess());
+            sessionStorage.setItem("loginStatus", "true"); // will be retrieved in App component. saves login status as true within same tab (prevents our isLoggedIn variable from being reset whenever we go to a new link / refresh page, etc.)
         } else {
             if (animate) animate(); // execute animation if higher order function exists. in this project, ONLY login component inherits a shaking animation
             dispatch(loginFail());

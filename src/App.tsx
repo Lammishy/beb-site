@@ -1,4 +1,8 @@
-import React from 'react';
+import routes from "routes/routes";
+
+// Navigation around site
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import { useSelector } from 'react-redux';
 
 // Selector
@@ -9,9 +13,11 @@ import theme from "./styles/create-theme";
 import { ThemeProvider } from '@material-ui/styles';
 import { CssBaseline } from "@material-ui/core";
 
-// Custom Components
+// Pages
 import AuthPage from "components/pages/AuthPage";
-import TodoPage from "components/pages/Todo/Todo";
+
+// Layout
+import BottomNavbar from "components/BottmNavbar/BottomNavbar";
 
 function App() {
   /**
@@ -19,15 +25,36 @@ function App() {
    * Global styles
    */
 
-  const { isLoggedIn } = useSelector(getLoginStatusSelector);
+  let isLoggedIn: boolean;
+  isLoggedIn = useSelector(getLoginStatusSelector).isLoggedIn;
 
-  console.log("App rendered");
+  // Lazy to redo login logic that's tied to redux store. so just doing a hacky check here if we have already logged in previously (workaround for isLoggedIn variable being destroyed when we refresh page / new link)
+  if (!isLoggedIn) { 
+    // If login was already successful previously, then loginStatus should be inside session storage.
+    // Therefore, this code only really kicks in when user refreshes page / goes to new link (navigates around site)
+    const hasLoggedInBefore = sessionStorage.getItem("loginStatus")
+    isLoggedIn = hasLoggedInBefore ? true : isLoggedIn;
+   }
+
+  console.log("XJ App rendered");
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline/>
-      {!isLoggedIn && <AuthPage />}
-      {isLoggedIn && <TodoPage />}
+      <CssBaseline />
+
+      {/* Always render login page, no matter what url if not logged in */}
+      {!isLoggedIn ?
+        <AuthPage /> :
+        <Router>
+          <Switch>
+            {routes.map((route: any) => <Route path={route.path} component={route.Component} />)}
+          </Switch>
+        </Router>}
+
+
+
+      {/* {!isLoggedIn && <AuthPage />} */}
+      {/* {!isLoggedIn && <TodoPage />} */}
       {/* <Page>
           <header>
             <h1>App initialized with Typescript and Material UI (not typography element)</h1>
@@ -36,7 +63,9 @@ function App() {
             </div>
           </header>
       </Page> */}
+      {isLoggedIn && <BottomNavbar />}
     </ThemeProvider>
+
 
   );
 }
