@@ -5,7 +5,7 @@ import { ThemeProvider } from "@material-ui/styles";
 const AlertButton = ({ onClick, children }: {onClick: any, children: any}) => {
     return (
         <ThemeProvider theme={alertButtonTheme}>
-            <Button variant="contained" onClick={onClick}>
+            <Button variant="contained" onClick={onClick} color="primary">
                 {children}
             </Button>
         </ThemeProvider>
