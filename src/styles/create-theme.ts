@@ -19,6 +19,21 @@ const fontFams = {
 };
 
 const theme = createTheme({
+    overrides: {
+        MuiCssBaseline: {
+            "@global": {
+                html: {
+                    height: "100%",
+                },
+                body: {
+                    height: "100%" // if this is set to minHeight, then child components with height: 100% will not work. 
+                    // minHeight is NOT an explicit declaration of an element's height.
+                    // Height percentages are calculated from their parent's height
+                    // https://stackoverflow.com/a/8468131
+                }
+            }
+        }
+    },
     palette: {
         type: "dark",
         primary: {
