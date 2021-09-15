@@ -51,18 +51,6 @@ function App() {
           </Switch>
         </Router>}
 
-
-
-      {/* {!isLoggedIn && <AuthPage />} */}
-      {/* {!isLoggedIn && <TodoPage />} */}
-      {/* <Page>
-          <header>
-            <h1>App initialized with Typescript and Material UI (not typography element)</h1>
-            <div className="w-100 d-flex">
-              <Button variant="contained" color="secondary" onClick={openDeadlineReminder}>Click Me!</Button>
-            </div>
-          </header>
-      </Page> */}
       {isLoggedIn && <BottomNavbar />}
     </ThemeProvider>
 
