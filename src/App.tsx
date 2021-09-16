@@ -1,7 +1,7 @@
 import { ComponentRoute, ROUTE_NAMES, mainContentRoutes } from "routes/routes";
 
 // Navigation around site
-import { BrowserRouter as Router, Route, Switch, Redirect, useLocation } from "react-router-dom";
+import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 // import history from "store/history";
 
 import { useSelector, useDispatch } from 'react-redux';
