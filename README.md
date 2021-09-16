@@ -45,3 +45,7 @@ const darkTheme = {
 2. Replacement of executing callback() from this.setState(newState, callback):
 - Change to using `setState` and `useEffect hook with dependency on state from setState` from `useState` hook: https://maksimrv.medium.com/usestate-with-callback-d574298eb8bd
 - also features how to use a number of callbacks within useEffect (that looks readable);
+
+
+3. Adding SVGs
+- https://create-react-app.dev/docs/adding-images-fonts-and-files/
