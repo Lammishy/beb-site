@@ -103,7 +103,7 @@ function App() {
           <Route path="*" component={NotFoundPage} />
         </Switch>
 
-        {isLoggedIn && <BottomNavbar />}
+        {isLoggedIn && userOnMainContentRoute && <BottomNavbar />}
       </Router>
     </ThemeProvider>
   );
