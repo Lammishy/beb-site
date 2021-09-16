@@ -1,10 +1,11 @@
-import { ComponentRoute, ROUTE_NAMES, getMainContentRoutes } from "routes/routes";
+import { ComponentRoute, ROUTE_NAMES, mainContentRoutes } from "routes/routes";
 
 // Navigation around site
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 // import history from "store/history";
 
 import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from "react";
 
 // Selector
 import { getLoginStatusSelector } from 'selectors/selectors';
@@ -34,22 +35,37 @@ const renderPageWithAccessDeniedRedirect = (isLoggedIn: boolean, userOnMainConte
   )
 }
 
-function App() {
+const checkIfUserOnMainContentRoute = () => {
+  const currentPath = window.location.pathname;
+  return mainContentRoutes.some((route: ComponentRoute) => {
+    return route.path === currentPath;
+  })
+}
+
+const App = (props: any) => {
   /**
    * Handles Routing of pages 
    * Handles Authentication
    * Handles Styling themes
    */
-  const dispatch = useDispatch();
-  const currentPath = window.location.pathname;
 
-  const mainContentRoutes = getMainContentRoutes();
-  const userOnMainContentRoute = mainContentRoutes.some((route: ComponentRoute) => route.path === currentPath)
+  const dispatch = useDispatch();
+  const [userOnMainContentRoute, setUserOnMainContentRoute] = useState(checkIfUserOnMainContentRoute());
 
   // get login status from store
   let isLoggedIn = useSelector(getLoginStatusSelector).isLoggedIn;
   // always returns false first when user refreshes page, 
   // because initial state in loginReducer is set to false
+
+  useEffect(() => {
+    // Re-evaluate if user on main content pages after login
+    // necessary 
+    // because App is not re-rendered when route changes.
+    if (isLoggedIn) setUserOnMainContentRoute(checkIfUserOnMainContentRoute()); 
+    // We need app to re-run when login status changes
+    //  so we can re-evaluate if user is on main route
+
+  }, [isLoggedIn, userOnMainContentRoute])
 
   /**
    * IMPORTANT CHECK HERE
@@ -74,7 +90,6 @@ function App() {
     // update store that user HAS logged in before
     if (isLoggedIn) dispatch(loginSuccess());
   }
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -101,6 +116,7 @@ function App() {
           <Route path={ROUTE_NAMES.accessDenied} exact component={AccessDeniedPage} />
           {/* Fallback page that shows everytime user tries a link that does not exist */}
           <Route path="*" component={NotFoundPage} />
+
         </Switch>
 
         {isLoggedIn && userOnMainContentRoute && <BottomNavbar />}

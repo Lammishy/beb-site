@@ -48,7 +48,7 @@ export default routes;
  * 
  * Helpers
  */
-export const getMainContentRoutes = () => {
+const getMainContentRoutes = () => {
   /**
    * Retrieves Pages that are the main content of the site
    */
@@ -64,6 +64,10 @@ export const getMainContentRoutes = () => {
     );
   });
 };
+
+
+export const mainContentRoutes = getMainContentRoutes();
+
 
 export interface ComponentRoute {
     path: string;
