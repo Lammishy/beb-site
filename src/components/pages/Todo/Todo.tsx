@@ -1,4 +1,3 @@
-import React from "react";
 import map from "lodash/map";
 // Layout
 import Page from "components/layout/Page/Page";
@@ -28,11 +27,12 @@ const TodoPage = (props: any) => {
     const allItems: taskItem[] = [
         {
             key: "1",
-            task: "Yesterday was working on AQA and number throttle button",
+            task: `Yesterday was working on the number throttle button. Working with devops to resolve some issues regarding deployment. 
+            So this task will take abit longer than expected. Once devops has confirmed on their end then will continue to work on this task.`,
         },
         {
             key: "2",
-            task: "Number Button throttle task has been approved, will merge to staging, do the necessary tests on all the affected flows and then create a PR to develop",
+            task: "So today I will be focusing on completing AQA",
         },
         {
             key: "3",

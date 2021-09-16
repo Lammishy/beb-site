@@ -1,7 +1,8 @@
-import routes from "routes/routes";
+import { ComponentRoute, ROUTE_NAMES, getMainContentRoutes } from "routes/routes";
 
 // Navigation around site
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+// import history from "store/history";
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -15,6 +16,8 @@ import { CssBaseline } from "@material-ui/core";
 
 // Pages
 import AuthPage from "components/pages/AuthPage";
+import AccessDeniedPage from "components/pages/AccessDeniedPage";
+import NotFoundPage from "components/pages/NotFoundPage";
 
 // Layout
 import BottomNavbar from "components/BottmNavbar/BottomNavbar";
@@ -23,50 +26,109 @@ import BottomNavbar from "components/BottmNavbar/BottomNavbar";
 import { loginSuccess } from "actions/actions";
 
 
+const renderPageWithAccessDeniedRedirect = (isLoggedIn: boolean, userOnMainContentRoute: boolean, Component: React.ElementType) => {
+  return (
+    (!isLoggedIn && userOnMainContentRoute) ?
+      <Redirect to={ROUTE_NAMES.accessDenied} /> :
+      <Component />
+  )
+}
+
 function App() {
   /**
    * Handles Routing of pages 
-   * Global styles
+   * Handles Authentication
+   * Handles Styling themes
    */
   const dispatch = useDispatch();
-  let isLoggedIn: boolean;
-  isLoggedIn = useSelector(getLoginStatusSelector).isLoggedIn;
+  const currentPath = window.location.pathname;
 
-  // Lazy to redo login logic that's tied to redux store. 
-  // so just doing a hacky check here if we have
-  //  already logged in previously 
-  // (workaround for isLoggedIn variable being destroyed when we refresh page / new link)
+  const mainContentRoutes = getMainContentRoutes();
+  const userOnMainContentRoute = mainContentRoutes.some((route: ComponentRoute) => route.path === currentPath)
+
+  // get login status from store
+  let isLoggedIn = useSelector(getLoginStatusSelector).isLoggedIn;
+  // always returns false first when user refreshes page, 
+  // because initial state in loginReducer is set to false
+
+  /**
+   * IMPORTANT CHECK HERE
+   * Workaround for isLoggedIn returning false first 
+   * when page refreshes 
+   * but user has already loggedin
+   */
   if (!isLoggedIn) {
-    // If login was already successful previously, 
-    // then loginStatus should be inside session storage.
-    // Therefore, this code only really kicks in 
-    // when user refreshes page / goes to new link (navigates around site)
-    const hasLoggedInBefore = sessionStorage.getItem("loginStatus")
+    /**
+     * Sets isLoggedIn to true if user has already logged in before. 
+     * Prevents incorrect value of isLoggedIn value
+     */
+    // if login is false (on page refresh and store refreshes, or because user simply has not logged in before)
+    let userLoggedInBefore = sessionStorage.getItem("loginStatus"); // check if user has logged in before
 
-    if (hasLoggedInBefore) {
-      // remember to dispatch to store to update absolute truth value about login
-      dispatch(loginSuccess());
-    }
+    // if user has logged in before, set isLoggedIn status to true
+    // IMPORTANT. because on first render "isLoggedIn" would be FALSE (because loginReducer initial state is false)
+    // therefore we manually set this to true here 
+    // prevents AccessDeniedPage from rendering incorrectly
+    isLoggedIn = userLoggedInBefore ? true : isLoggedIn;
+
+    // update store that user HAS logged in before
+    if (isLoggedIn) dispatch(loginSuccess());
   }
 
-  console.log("XJ App rendered");
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      {/* Always render login page, no matter what url if not logged in */}
-      {!isLoggedIn ?
-        <AuthPage /> :
-        <Router>
-          <Switch>
-            {routes.map((route: any) => <Route path={route.path} component={route.Component} />)}
-          </Switch>
-        </Router>}
+      <Router>
+        <Switch>
+          {/* Login Redirect to start page if already logged in */}
+          <Route path={ROUTE_NAMES.login} exact>
+            {isLoggedIn ? <Redirect to={ROUTE_NAMES.journeyStart} /> : <AuthPage />}
+          </Route>
 
-      {isLoggedIn && <BottomNavbar />}
+          {/* Redirect to access denied page if user tries to access main pages without first logging in */}
+          {mainContentRoutes.map((route: ComponentRoute) => {
+            return <Route path={route.path} exact>
+              {renderPageWithAccessDeniedRedirect(isLoggedIn, userOnMainContentRoute, route.Component)}
+            </Route>
+          })}
+          {/* <Route path={ROUTE_NAMES.journeyStart} exact>
+            {(!isLoggedIn && userOnMainContentRoute) ? <Redirect to={ROUTE_NAMES.accessDenied} /> : <JourneyStartPage />}
+          </Route> */}
+
+
+          <Route path={ROUTE_NAMES.accessDenied} exact component={AccessDeniedPage} />
+          {/* Fallback page that shows everytime user tries a link that does not exist */}
+          <Route path="*" component={NotFoundPage} />
+        </Switch>
+
+        {isLoggedIn && <BottomNavbar />}
+      </Router>
     </ThemeProvider>
   );
 }
 
 export default App;
+
+
+
+
+// {/* Always r(ender login page, no matter what url if not logged in */}
+// <Router>
+// <Switch>
+//   {/* Redirect to start of journey if user already logged in */}
+//   <Route path={ROUTE_NAMES.login} exact>
+//     {isLoggedIn ? <Redirect to={ROUTE_NAMES.journeyStart} /> : <AuthPage />}
+//   </Route>
+
+//   {/* Direct to Access Denied page if user tries to access sites when not logged in yet */}
+//   <ProtectedRouteToAccessDenied path={ROUTE_NAMES.journeyStart} component={JourneyStartPage}/>
+
+//   {/* Fallback / error sites */}
+//   <Route exact path={ROUTE_NAMES.accessDenied} component={AccessDeniedPage} />
+//   <Route path="*" component={NotFoundPage}/>
+
+//   {isLoggedIn && <BottomNavbar />}
+// </Switch>
+// </Router>)
