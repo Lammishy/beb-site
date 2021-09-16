@@ -1,7 +1,7 @@
 import { ComponentRoute, ROUTE_NAMES, mainContentRoutes } from "routes/routes";
 
 // Navigation around site
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, useLocation } from "react-router-dom";
 // import history from "store/history";
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -50,6 +50,8 @@ const App = (props: any) => {
    */
 
   const dispatch = useDispatch();
+  const location = useLocation(); 
+
   const [userOnMainContentRoute, setUserOnMainContentRoute] = useState(checkIfUserOnMainContentRoute());
 
   // get login status from store
@@ -61,11 +63,11 @@ const App = (props: any) => {
     // Re-evaluate if user on main content pages after login
     // necessary 
     // because App is not re-rendered when route changes.
-    if (isLoggedIn) setUserOnMainContentRoute(checkIfUserOnMainContentRoute()); 
+    setUserOnMainContentRoute(checkIfUserOnMainContentRoute()); 
     // We need app to re-run when login status changes
     //  so we can re-evaluate if user is on main route
 
-  }, [isLoggedIn, userOnMainContentRoute])
+  }, [location.pathname])
 
   /**
    * IMPORTANT CHECK HERE
@@ -90,12 +92,12 @@ const App = (props: any) => {
     // update store that user HAS logged in before
     if (isLoggedIn) dispatch(loginSuccess());
   }
+  
+  console.log("XJ App location: ", location);
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-
-      <Router>
         <Switch>
           {/* Login Redirect to start page if already logged in */}
           <Route path={ROUTE_NAMES.login} exact>
@@ -120,7 +122,6 @@ const App = (props: any) => {
         </Switch>
 
         {isLoggedIn && userOnMainContentRoute && <BottomNavbar />}
-      </Router>
     </ThemeProvider>
   );
 }
