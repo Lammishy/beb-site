@@ -7,7 +7,7 @@ const JourneyStartPage = (props: any) => {
     console.log("XJ Homepage rendered");
     return <Page>
         <Typography variant="h1">
-            Home Page
+            Why beb should stop stealing beeb's food
         </Typography>
     </Page>
 }
