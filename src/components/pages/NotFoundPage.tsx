@@ -1,14 +1,16 @@
 // Navigation
-import { ROUTE_NAMES } from "routes/routes";
+import { ROUTE_NAMES, mainContentRoutes } from "routes/routes";
 import { useHistory } from "react-router-dom";
 
 // Layout
 import Page from "components/layout/Page/Page";
-import { ImageList, ImageListItem } from "@material-ui/core";
+import { ImageList, ImageListItem, SvgIcon } from "@material-ui/core";
 
 // Alert Button
 import AlertButton from "components/layout/AlertButton";
-import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
+
+// Common UI Components
+import { ButtonGroup, Button } from "@material-ui/core";
 
 // Typography
 import { Typography } from "@material-ui/core";
@@ -18,6 +20,20 @@ import { makeStyles } from "@material-ui/styles";
 
 // Assets
 import bebSleeping from "assets/sleeping-beb-1.jpg"
+import { ReactComponent as DevilSvgIcon } from "assets/icons/devil.svg";
+import { ReactComponent as AngelSvgIcon } from "assets/icons/angel.svg";
+
+const DevilIcon = (props: any) => {
+    return <SvgIcon {...props}>
+        <DevilSvgIcon />
+    </SvgIcon>
+}
+
+const AngelIcon = (props: any) => {
+    return <SvgIcon {...props}>
+        <AngelSvgIcon/>
+    </SvgIcon>
+}
 
 const NotFoundPage = (props: any) => {
     // Styles 
@@ -49,6 +65,11 @@ const NotFoundPage = (props: any) => {
         history.push(ROUTE_NAMES.login);
     };
 
+    const gotToRandomMainPage = () => {
+        const randomPage = mainContentRoutes[Math.floor(Math.random() * mainContentRoutes.length)];
+        history.push(randomPage.path);
+    }
+
     return (
         <Page>
             <Typography variant="h3" className={h2Styles.root}>
@@ -67,9 +88,15 @@ const NotFoundPage = (props: any) => {
                 </ImageList>
             </div>
 
-            <AlertButton onClick={goBackToHomePageHandler} startIcon={<InsertEmoticonIcon />}>
-                Here, let me guide you back home
-            </AlertButton>
+            <ButtonGroup variant="contained">
+                <AlertButton onClick={goBackToHomePageHandler} startIcon={<AngelIcon />} color="primary">
+                    Here, let me guide you back home
+                </AlertButton>
+                <Button onClick={gotToRandomMainPage} color="secondary" endIcon={<DevilIcon />}>
+                    Or.. would you prefer to explore..?
+                </Button>
+            </ButtonGroup>
+
         </Page>
     )
 }
