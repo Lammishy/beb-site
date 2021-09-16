@@ -46,8 +46,6 @@ const NotFoundPage = (props: any) => {
 
     const goBackToHomePageHandler = (event: any) => {
         // sends user back to login page. if already logged in, will send to home page (through redirect in router)
-        console.log("XJ goback is run");
-        // console.log("XJ history: ", history);
         history.push(ROUTE_NAMES.login);
     };
 
