@@ -50,7 +50,7 @@ const App = (props: any) => {
    */
 
   const dispatch = useDispatch();
-  const location = useLocation(); 
+  const location = useLocation();
 
   const [userOnMainContentRoute, setUserOnMainContentRoute] = useState(checkIfUserOnMainContentRoute());
 
@@ -60,12 +60,8 @@ const App = (props: any) => {
   // because initial state in loginReducer is set to false
 
   useEffect(() => {
-    // Re-evaluate if user on main content pages after login
-    // necessary 
-    // because App is not re-rendered when route changes.
-    setUserOnMainContentRoute(checkIfUserOnMainContentRoute()); 
-    // We need app to re-run when login status changes
-    //  so we can re-evaluate if user is on main route
+    // Re-evaluate whenever location changes
+    setUserOnMainContentRoute(checkIfUserOnMainContentRoute());
 
   }, [location.pathname])
 
@@ -92,36 +88,30 @@ const App = (props: any) => {
     // update store that user HAS logged in before
     if (isLoggedIn) dispatch(loginSuccess());
   }
-  
-  console.log("XJ App location: ", location);
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-        <Switch>
-          {/* Login Redirect to start page if already logged in */}
-          <Route path={ROUTE_NAMES.login} exact>
-            {isLoggedIn ? <Redirect to={ROUTE_NAMES.journeyStart} /> : <AuthPage />}
+      <Switch>
+        {/* Login Redirect to start page if already logged in */}
+        <Route path={ROUTE_NAMES.login} exact>
+          {isLoggedIn ? <Redirect to={ROUTE_NAMES.journeyStart} /> : <AuthPage />}
+        </Route>
+
+        {/* Redirect to access denied page if user tries to access main pages without first logging in */}
+        {mainContentRoutes.map((route: ComponentRoute) => {
+          return <Route path={route.path} exact>
+            {renderPageWithAccessDeniedRedirect(isLoggedIn, userOnMainContentRoute, route.Component)}
           </Route>
+        })}
 
-          {/* Redirect to access denied page if user tries to access main pages without first logging in */}
-          {mainContentRoutes.map((route: ComponentRoute) => {
-            return <Route path={route.path} exact>
-              {renderPageWithAccessDeniedRedirect(isLoggedIn, userOnMainContentRoute, route.Component)}
-            </Route>
-          })}
-          {/* <Route path={ROUTE_NAMES.journeyStart} exact>
-            {(!isLoggedIn && userOnMainContentRoute) ? <Redirect to={ROUTE_NAMES.accessDenied} /> : <JourneyStartPage />}
-          </Route> */}
+        {/* Fallback pages */}
+        <Route path={ROUTE_NAMES.accessDenied} exact component={AccessDeniedPage} />
+        <Route path="*" component={NotFoundPage} />
 
+      </Switch>
 
-          <Route path={ROUTE_NAMES.accessDenied} exact component={AccessDeniedPage} />
-          {/* Fallback page that shows everytime user tries a link that does not exist */}
-          <Route path="*" component={NotFoundPage} />
-
-        </Switch>
-
-        {isLoggedIn && userOnMainContentRoute && <BottomNavbar />}
+      {isLoggedIn && userOnMainContentRoute && <BottomNavbar />}
     </ThemeProvider>
   );
 }
