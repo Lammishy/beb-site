@@ -21,16 +21,7 @@ const AccessDeniedPage = (props: any) => {
             fontWeight: 700
         }
     }))();
-
-    let history = useHistory();
-
-    const goBackToHomePageHandler = (event: any) => {
-        // sends user back to login page. if already logged in, will send to home page (through redirect in router)
-        console.log("XJ goback is run");
-        // console.log("XJ history: ", history);
-        history.push(ROUTE_NAMES.login);
-    };
-
+    
     const classes = makeStyles(_ => ({
         root: {
             display: "flex",
@@ -43,6 +34,17 @@ const AccessDeniedPage = (props: any) => {
             height: 450
         },
     }))();
+
+    let history = useHistory();
+
+    const goBackToHomePageHandler = (event: any) => {
+        // sends user back to login page. if already logged in, will send to home page (through redirect in router)
+        console.log("XJ goback is run");
+        // console.log("XJ history: ", history);
+        history.push(ROUTE_NAMES.login);
+    };
+
+    
 
     return (
         <Page>
