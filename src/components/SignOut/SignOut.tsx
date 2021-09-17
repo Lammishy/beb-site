@@ -8,14 +8,15 @@ import { makeStyles } from "@material-ui/core";
 
 // Component UI
 import { Button } from "@material-ui/core";
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const SignOut = (props: any) => {
     // Styles
     const classes = makeStyles(() => ({
         root: {
             position: "absolute",
-            top: "10px",
-            right: "10px"
+            top: "20px",
+            right: "20px"
         }
     }))();
 
@@ -25,8 +26,8 @@ const SignOut = (props: any) => {
         dispatch(loginFail());
     };
 
-    return <Button variant="contained" color="primary" className={classes.root} onClick={onSignOut}>
-        Sign Out
+    return <Button variant="contained" color="primary" className={classes.root} onClick={onSignOut} startIcon={<ExitToAppIcon/>}>
+        Get tha fak out
     </Button>
 
 };
