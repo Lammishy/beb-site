@@ -106,7 +106,6 @@ const SignIn = (props: any) => {
          */
         if (usernameInfo.username === BEB_CREDENTIALS.user && pwInfo.pw === BEB_CREDENTIALS.pw) {
             dispatch(loginSuccess());
-            sessionStorage.setItem("loginStatus", "true"); // will be retrieved in App component. saves login status as true within same tab (prevents our isLoggedIn variable from being reset whenever we go to a new link / refresh page, etc.)
         } else {
             if (animate) animate(); // execute animation if higher order function exists. in this project, ONLY login component inherits a shaking animation
             dispatch(loginFail());

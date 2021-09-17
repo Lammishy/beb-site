@@ -7,11 +7,13 @@ const loginReducer = (
 ) => {
   switch (action.type) {
     case LOGIN.LOGIN_SUCCESS:
+      sessionStorage.setItem("loginStatus", "true");
       return {
         ...state,
         isLoggedIn: true,
       };
     case LOGIN.LOGIN_FAIL:
+      sessionStorage.setItem("loginStatus", "false");
       return {
         ...state,
         isLoggedIn: false,

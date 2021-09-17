@@ -1,30 +1,40 @@
-import { ComponentRoute, ROUTE_NAMES, mainContentRoutes } from "routes/routes";
+
 
 // Navigation around site
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
-// import history from "store/history";
+import { ComponentRoute, ROUTE_NAMES, mainContentRoutes } from "routes/routes";
 
+// Hooks
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from "react";
 
 // Selector
 import { getLoginStatusSelector } from 'selectors/selectors';
 
-// Theme / styles 
-import theme from "./styles/create-theme";
-import { ThemeProvider } from '@material-ui/styles';
-import { CssBaseline } from "@material-ui/core";
 
+// Login-related
+import { loginSuccess } from "actions/actions";
+
+/**
+ * Components
+ */
 // Pages
 import AuthPage from "components/pages/AuthPage";
 import AccessDeniedPage from "components/pages/AccessDeniedPage";
 import NotFoundPage from "components/pages/NotFoundPage";
 
-// Layout
+// Component UI
 import BottomNavbar from "components/BottmNavbar/BottomNavbar";
+import SignOut from "components/SignOut/SignOut";
 
-// Login-related
-import { loginSuccess } from "actions/actions";
+
+/**
+ * Theme / Styles
+ */
+import theme from "./styles/create-theme";
+import { ThemeProvider } from '@material-ui/styles';
+import { CssBaseline } from "@material-ui/core";
+
 
 
 const renderPageWithAccessDeniedRedirect = (isLoggedIn: boolean, userOnMainContentRoute: boolean, Component: React.ElementType) => {
@@ -83,7 +93,9 @@ const App = (props: any) => {
     // IMPORTANT. because on first render "isLoggedIn" would be FALSE (because loginReducer initial state is false)
     // therefore we manually set this to true here 
     // prevents AccessDeniedPage from rendering incorrectly
-    isLoggedIn = userLoggedInBefore ? true : isLoggedIn;
+
+    let userLoggedInBeforeBool = userLoggedInBefore === "false" ? false : true; // convert to bool. sessionstorage only allows storing of string values
+    isLoggedIn = userLoggedInBeforeBool ? true : false;
 
     // update store that user HAS logged in before
     if (isLoggedIn) dispatch(loginSuccess());
@@ -92,6 +104,7 @@ const App = (props: any) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      {isLoggedIn && <SignOut/>}
       <Switch>
         {/* Login Redirect to start page if already logged in */}
         <Route path={ROUTE_NAMES.login} exact>
