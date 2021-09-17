@@ -31,9 +31,11 @@ const DevilIcon = (props: any) => {
 
 const AngelIcon = (props: any) => {
     return <SvgIcon {...props}>
-        <AngelSvgIcon/>
+        <AngelSvgIcon />
     </SvgIcon>
 }
+
+
 
 const NotFoundPage = (props: any) => {
     // Styles 
