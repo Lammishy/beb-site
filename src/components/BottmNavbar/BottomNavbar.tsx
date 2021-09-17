@@ -1,9 +1,27 @@
-// Bottom Navigation
+// Bottom Navigation UI
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import makeStyles from "@material-ui/styles/makeStyles";
+
+// Navigation
+import { useHistory, useLocation } from "react-router-dom";
+import { ComponentRoute, mainContentRoutes } from "routes/routes";
+
+// Hooks
+import { useState, useEffect } from "react";
+import { findIndex } from "lodash";
+
+const isOnLastPath = (path: string): boolean => {
+  const lastPath = mainContentRoutes[mainContentRoutes.length - 1]; // acceptable because mainCintentRoutes is already sorted
+  return path === lastPath.path;
+}
+
+const isOnFirstPage = (path: string): boolean => {
+  const firstPath = mainContentRoutes[0];
+  return path === firstPath.path;
+}
 
 const BottomNavbar = (props: any) => {
   const navigationBottomStyles = makeStyles(_ => ({
@@ -24,9 +42,66 @@ const BottomNavbar = (props: any) => {
     }
   }))();
 
-  const handleChange = (event: any, newValue: any) => {
-    console.log("XJ: ", event.target);
-    console.log("XJ newValue: ", newValue);
+  const location = useLocation();
+  const history = useHistory();
+
+  // State management
+  const [isFirstPage, setIsFirstPage] = useState(isOnFirstPage(location.pathname));
+  const [isLastPage, setIsLastPage] = useState(isOnLastPath(location.pathname));
+
+  // let useEffect handle whenver location updates
+  useEffect(() => {
+    // handle isFirstPage
+    setIsFirstPage(isOnFirstPage(location.pathname));
+    // handle isLastPage
+    setIsLastPage(isOnLastPath(location.pathname))
+
+  }, [location.pathname])
+
+
+  const handleChange = (event: any, typeOfNavButton: any) => {
+    const currentPage = location.pathname;
+
+    if (typeOfNavButton === "prev") {
+      goToRouteBefore(currentPage);
+    }
+
+    if (typeOfNavButton === "next") {
+      // using the currentPage, figure out what is the next page after that
+      goToRouteAfter(currentPage);
+    };
+  }
+
+  const goToRouteBefore = (currentPage: string, routes: ComponentRoute[] = mainContentRoutes): void => {
+    /**
+     * Using currentPage, checks for route before it
+     * If exists, navigate to route
+     */
+    let previousRoute = {path: ""};
+
+    if (!isOnFirstPage(currentPage)) {
+      // any code for getting the previous element would already work and not throw error
+      // because already checking if it is the first element in the array
+      const currentRouteIndex = findIndex(routes, ["path", currentPage]); // find route where it's path is the currentpage
+      previousRoute = routes[currentRouteIndex - 1];
+      history.push(previousRoute.path);
+    }
+  }
+  
+  const goToRouteAfter = (currentPage: string, routes: ComponentRoute[] = mainContentRoutes): void => {
+    /**
+     * Using currentPage, checks for route after it
+     * If exists, navigate to route
+     */
+    let nextRoute = { path: "" };
+
+    if (!isOnLastPath(currentPage)) {
+      // any code for getting next element would not throw error
+      // because we already check if element is the last in array
+      const currentRouteIndex = findIndex(routes, ["path", currentPage]);
+      nextRoute = routes[currentRouteIndex + 1];
+      history.push(nextRoute.path);
+    }
   }
 
   return (
@@ -35,34 +110,20 @@ const BottomNavbar = (props: any) => {
       onChange={handleChange}
       className={navigationBottomStyles.root}
     >
-      {/* ROUTER TO USE
-      1. router.history.goBack(), https://stackoverflow.com/a/32509845
-      2. find a way to implement "next" button to go to the next without having to add the path manually to each next button.
-      - need a way to:
-        - Reference a list of routes
-        - Track what element (page in the list of routes) we are currently on
-        - Ability to go back (try react router history.goBack()) ?
-        - Ability to go to the next element in the list
-        
-        - Suggestion: To reference store
-        - reducer will hold list of routes
-        - reducer will keep track of two variables: currentRoute and index of that route
-        - 
-      - All of this will be responsibility of navigation component
-      - Actual routing will be handled by Router -> Switch 
-    */}
-      <BottomNavigationAction
-        label="Previous"
-        value="prev"
-        icon={<ChevronLeftIcon />}
-        className={navButtonStyles.root}
-      />
-      <BottomNavigationAction
-        label="Next"
-        value="next"
-        icon={<ChevronRightIcon />}
-        className={navButtonStyles.root}
-      />
+      {!isFirstPage &&
+        <BottomNavigationAction
+          label="Previous"
+          value="prev"
+          icon={<ChevronLeftIcon />}
+          className={navButtonStyles.root}
+        />}
+      {!isLastPage &&
+        <BottomNavigationAction
+          label="Next"
+          value="next"
+          icon={<ChevronRightIcon />}
+          className={navButtonStyles.root}
+        />}
     </BottomNavigation>
   );
 };
