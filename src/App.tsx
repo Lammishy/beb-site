@@ -104,7 +104,7 @@ const App = (props: any) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {isLoggedIn && <SignOut/>}
+      {isLoggedIn && userOnMainContentRoute && <SignOut/>}
       <Switch>
         {/* Login Redirect to start page if already logged in */}
         <Route path={ROUTE_NAMES.login} exact>
