@@ -4,7 +4,6 @@ import { withRouter } from "react-router";
 import { Typography } from "@material-ui/core";
 
 const JourneyStartPage = (props: any) => {
-    console.log("XJ Homepage rendered");
     return <Page>
         <Typography variant="h1">
             Why beb should stop stealing beeb's food
