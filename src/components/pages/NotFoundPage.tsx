@@ -98,7 +98,6 @@ const NotFoundPage = (props: any) => {
                     Or.. would you prefer to explore..?
                 </Button>
             </ButtonGroup>
-
         </Page>
     )
 }
