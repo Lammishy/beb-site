@@ -3,6 +3,8 @@ import TodoPage from "components/pages/Todo/Todo";
 import Intro from "components/pages/Intro";
 import AccessDeniedPage from "components/pages/AccessDeniedPage";
 import JourneyStartPage from "components/pages/JourneyStartPage";
+import SecondPage from "components/pages/SecondPage";
+import ThirdPage from "components/pages/ThirdPage";
 import NotFoundPage from "components/pages/NotFoundPage";
 import React from "react";
 
@@ -11,6 +13,8 @@ import orderBy from "lodash/orderBy";
 export const ROUTE_NAMES = {
   login: "/login",
   journeyStart: "/journey-start",
+  secondPage: "/second-page",
+  thirdPage: "/third-page",
   todo: "/todo",
   intro: "/intro",
   accessDenied: "/access-denied",
@@ -28,14 +32,24 @@ const routes: ComponentRoute[] = [
     pageNum: 1,
   },
   {
+    path: ROUTE_NAMES.secondPage,
+    Component: SecondPage,
+    pageNum: 2,
+  },
+  {
+    path: ROUTE_NAMES.thirdPage,
+    Component: ThirdPage,
+    pageNum: 3,
+  },
+  {
     path: ROUTE_NAMES.todo,
     Component: TodoPage,
-    pageNum: 2,
+    pageNum: 4,
   },
   {
     path: ROUTE_NAMES.intro,
     Component: Intro,
-    pageNum: 3
+    pageNum: 5
   },
   {
     path: ROUTE_NAMES.accessDenied,
