@@ -4,7 +4,7 @@ import { red } from "@material-ui/core/colors";
 // Refer to below site for picking theme colors
 // https://material.io/design/color/the-color-system.html#tools-for-picking-colors
 
-const darkTheme = {
+export const darkTheme = {
     primary: "#7E57C2",
     complementary: "#9bc257",
     analogousOne: "#5765c2",

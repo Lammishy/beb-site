@@ -1,16 +1,13 @@
-
-
 // Navigation around site
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import { ComponentRoute, ROUTE_NAMES, mainContentRoutes } from "routes/routes";
 
 // Hooks
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 
 // Selector
 import { getLoginStatusSelector } from 'selectors/selectors';
-
 
 // Login-related
 import { loginSuccess } from "actions/actions";
@@ -23,9 +20,10 @@ import AuthPage from "components/pages/AuthPage";
 import AccessDeniedPage from "components/pages/AccessDeniedPage";
 import NotFoundPage from "components/pages/NotFoundPage";
 
-// Component UI
+// Website UIs
 import BottomNavbar from "components/BottmNavbar/BottomNavbar";
 import SignOut from "components/SignOut/SignOut";
+import LoadingSpinner from "components/layout/LoadingSpinner";
 
 
 /**
@@ -34,7 +32,6 @@ import SignOut from "components/SignOut/SignOut";
 import theme from "./styles/create-theme";
 import { ThemeProvider } from '@material-ui/styles';
 import { CssBaseline } from "@material-ui/core";
-
 
 
 const renderPageWithAccessDeniedRedirect = (isLoggedIn: boolean, userOnMainContentRoute: boolean, Component: React.ElementType) => {
@@ -104,24 +101,25 @@ const App = (props: any) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {isLoggedIn && userOnMainContentRoute && <SignOut/>}
+      {isLoggedIn && userOnMainContentRoute && <SignOut />}
       <Switch>
-        {/* Login Redirect to start page if already logged in */}
-        <Route path={ROUTE_NAMES.login} exact>
-          {isLoggedIn ? <Redirect to={ROUTE_NAMES.journeyStart} /> : <AuthPage />}
-        </Route>
-
-        {/* Redirect to access denied page if user tries to access main pages without first logging in */}
-        {mainContentRoutes.map((route: ComponentRoute) => {
-          return <Route path={route.path} exact>
-            {renderPageWithAccessDeniedRedirect(isLoggedIn, userOnMainContentRoute, route.Component)}
+        <Suspense fallback={<LoadingSpinner />}>
+          {/* Login Redirect to start page if already logged in */}
+          <Route path={ROUTE_NAMES.login} exact>
+            {isLoggedIn ? <Redirect to={ROUTE_NAMES.journeyStart} /> : <AuthPage />}
           </Route>
-        })}
 
-        {/* Fallback pages */}
-        <Route path={ROUTE_NAMES.accessDenied} exact component={AccessDeniedPage} />
-        <Route path="*" component={NotFoundPage} />
+          {/* Redirect to access denied page if user tries to access main pages without first logging in */}
+          {mainContentRoutes.map((route: ComponentRoute) => {
+            return <Route path={route.path} exact>
+              {renderPageWithAccessDeniedRedirect(isLoggedIn, userOnMainContentRoute, route.Component)}
+            </Route>
+          })}
 
+          {/* Fallback pages */}
+          <Route path={ROUTE_NAMES.accessDenied} exact component={AccessDeniedPage} />
+          <Route path="*" component={NotFoundPage} />
+        </Suspense>
       </Switch>
 
       {isLoggedIn && userOnMainContentRoute && <BottomNavbar />}

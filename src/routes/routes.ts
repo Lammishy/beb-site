@@ -1,14 +1,15 @@
-import AuthPage from "components/pages/AuthPage";
-import TodoPage from "components/pages/Todo/Todo";
-import Intro from "components/pages/Intro";
-import AccessDeniedPage from "components/pages/AccessDeniedPage";
-import JourneyStartPage from "components/pages/JourneyStartPage";
-import SecondPage from "components/pages/SecondPage";
-import ThirdPage from "components/pages/ThirdPage";
-import NotFoundPage from "components/pages/NotFoundPage";
 import React from "react";
-
 import orderBy from "lodash/orderBy";
+
+// Pages
+const AuthPage = React.lazy(() => import("components/pages/AuthPage"));
+const TodoPage = React.lazy(() => import("components/pages/Todo/Todo"));
+const Intro = React.lazy(() => import("components/pages/Intro"));
+const AccessDeniedPage = React.lazy(() => import("components/pages/AccessDeniedPage"));
+const JourneyStartPage = React.lazy(() => import("components/pages/JourneyStartPage"));
+const SecondPage = React.lazy(() => import("components/pages/SecondPage"));
+const ThirdPage = React.lazy(() => import("components/pages/ThirdPage"));
+const NotFoundPage = React.lazy(() => import("components/pages/NotFoundPage"));
 
 export const ROUTE_NAMES = {
   login: "/login",
