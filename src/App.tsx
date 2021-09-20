@@ -111,7 +111,7 @@ const App = (props: any) => {
 
           {/* Redirect to access denied page if user tries to access main pages without first logging in */}
           {mainContentRoutes.map((route: ComponentRoute) => {
-            return <Route path={route.path} exact>
+            return <Route key={route.path} path={route.path} exact>
               {renderPageWithAccessDeniedRedirect(isLoggedIn, userOnMainContentRoute, route.Component)}
             </Route>
           })}
