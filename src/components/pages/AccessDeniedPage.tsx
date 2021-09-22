@@ -1,5 +1,5 @@
 // Hooks 
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 // App Navigation
 import { ROUTE_NAMES } from "routes/routes";
