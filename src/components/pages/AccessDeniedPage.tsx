@@ -47,6 +47,7 @@ const AccessDeniedPage = (props: any) => {
     }))();
 
     let history = useHistory();
+    const isLoggedIn = useSelector(getLoginStatusSelector).isLoggedIn;
 
     const goBackToHomePageHandler = (event: any) => {
         // sends user back to login page. if already logged in, will send to home page (through redirect in router)
@@ -69,6 +70,10 @@ const AccessDeniedPage = (props: any) => {
                     </ImageListItem>
                 </ImageList>
             </div>
+
+            {!isLoggedIn && <Typography variant="h6" className={h2Styles.root}>
+                Do you not realize you are not logged in!!
+            </Typography>}
 
             <AlertButton onClick={goBackToHomePageHandler}>
                 Go back to whence you came, plebian!!
