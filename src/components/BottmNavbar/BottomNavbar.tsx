@@ -54,9 +54,9 @@ const BottomNavbar = (props: any) => {
     // handle isFirstPage
     setIsFirstPage(isOnFirstPage(location.pathname));
     // handle isLastPage
-    setIsLastPage(isOnLastPath(location.pathname))
+    setIsLastPage(isOnLastPath(location.pathname));
 
-  }, [location.pathname])
+  }, [location.pathname]);
 
 
   const handleChange = (event: any, typeOfNavButton: any) => {
