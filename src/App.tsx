@@ -33,6 +33,11 @@ import theme from "./styles/create-theme";
 import { ThemeProvider } from '@material-ui/styles';
 import { CssBaseline } from "@material-ui/core";
 
+/**
+ * Animation
+ */
+import { AnimatePresence } from "framer-motion";
+
 
 const renderPageWithAccessDeniedRedirect = (isLoggedIn: boolean, userOnMainContentRoute: boolean, Component: React.ElementType) => {
   return (
@@ -103,28 +108,29 @@ const App = (props: any) => {
       <CssBaseline />
       {isLoggedIn && userOnMainContentRoute && <SignOut />}
       <Suspense fallback={<LoadingSpinner />}>
-        <Switch>
-          {/* Login Redirect to start page (first page of mainContentRoutes) if already logged in */}
-          <Route path={ROUTE_NAMES.login} exact>
-            {isLoggedIn ? <Redirect to={mainContentRoutes[0].path} /> : <AuthPage />}
-          </Route>
-
-          {/* Redirect to access denied page if user tries to access main pages without first logging in */}
-          {mainContentRoutes.map((route: ComponentRoute) => {
-            return <Route key={route.path} path={route.path} exact>
-              {renderPageWithAccessDeniedRedirect(isLoggedIn, userOnMainContentRoute, route.Component)}
+        <AnimatePresence exitBeforeEnter>
+          <Switch location={location} key={location.pathname}>
+            {/* Login Redirect to start page (first page of mainContentRoutes) if already logged in */}
+            <Route path={ROUTE_NAMES.login} key={ROUTE_NAMES.login} exact>
+              {isLoggedIn ? <Redirect to={mainContentRoutes[0].path} /> : <AuthPage />}
             </Route>
-          })}
 
-          {/* Fallback pages */}
-          <Route path={ROUTE_NAMES.accessDenied} component={AccessDeniedPage} />
-          <Route path={ROUTE_NAMES.notFound} exact component={NotFoundPage} />
-          <Route path="*">
-            <Redirect to={ROUTE_NAMES.notFound} />
-          </Route>
-        </Switch>
+            {/* Redirect to access denied page if user tries to access main pages without first logging in */}
+            {mainContentRoutes.map((route: ComponentRoute) => {
+              return <Route key={route.path} path={route.path} exact>
+                {renderPageWithAccessDeniedRedirect(isLoggedIn, userOnMainContentRoute, route.Component)}
+              </Route>
+            })}
+
+            {/* Fallback pages */}
+            <Route path={ROUTE_NAMES.accessDenied} key={ROUTE_NAMES.accessDenied} component={AccessDeniedPage} />
+            <Route path={ROUTE_NAMES.notFound} key={ROUTE_NAMES.notFound} exact component={NotFoundPage} />
+            <Route path="*">
+              <Redirect to={ROUTE_NAMES.notFound} />
+            </Route>
+          </Switch>
+        </AnimatePresence>
       </Suspense>
-
       {isLoggedIn && userOnMainContentRoute && <BottomNavbar />}
     </ThemeProvider>
   );

@@ -4,6 +4,7 @@ import Container from "@material-ui/core/Container";
 
 // Styles
 import { makeStyles } from "@material-ui/core/styles";
+import FadeMotionWrapper from "animations/FadeMotionWrapper";
 
 const useStyles = makeStyles({
     root: {
@@ -20,12 +21,26 @@ const useStyles = makeStyles({
  * Serves to center all elements in page
  */
 
-const Page = ({ children }: { children: any} ) => {
+const Page = ({ children, animate = true }: { children: any, animate?: boolean }) => {
     const classes = useStyles();
+
     return (
-        <Container className={classes.root} component="section">
-            {children}
-        </Container>
+        <>
+            {animate ?
+                <Container className={classes.root} >
+                    <FadeMotionWrapper>
+                        <Container className={classes.root} component="section">
+                            {children}
+                        </Container>
+                    </FadeMotionWrapper>
+                </Container> :
+                <Container className={classes.root} component="section">
+                    {children}
+                </Container>
+            }
+        </>
+
+
     )
 }
 
