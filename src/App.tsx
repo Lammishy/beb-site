@@ -102,8 +102,8 @@ const App = (props: any) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       {isLoggedIn && userOnMainContentRoute && <SignOut />}
-      <Switch>
-        <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Switch>
           {/* Login Redirect to start page (first page of mainContentRoutes) if already logged in */}
           <Route path={ROUTE_NAMES.login} exact>
             {isLoggedIn ? <Redirect to={mainContentRoutes[0].path} /> : <AuthPage />}
@@ -117,13 +117,13 @@ const App = (props: any) => {
           })}
 
           {/* Fallback pages */}
-          <Route path={ROUTE_NAMES.accessDenied} exact component={AccessDeniedPage} />
+          <Route path={ROUTE_NAMES.accessDenied} component={AccessDeniedPage} />
           <Route path={ROUTE_NAMES.notFound} exact component={NotFoundPage} />
           <Route path="*">
             <Redirect to={ROUTE_NAMES.notFound} />
           </Route>
-        </Suspense>
-      </Switch>
+        </Switch>
+      </Suspense>
 
       {isLoggedIn && userOnMainContentRoute && <BottomNavbar />}
     </ThemeProvider>
