@@ -70,7 +70,7 @@ const App = (props: any) => {
     // Re-evaluate whenever location changes
     setUserOnMainContentRoute(checkIfUserOnMainContentRoute());
 
-  }, [location.pathname])
+  }, [location.pathname]);
 
   /**
    * IMPORTANT CHECK HERE
@@ -104,9 +104,9 @@ const App = (props: any) => {
       {isLoggedIn && userOnMainContentRoute && <SignOut />}
       <Switch>
         <Suspense fallback={<LoadingSpinner />}>
-          {/* Login Redirect to start page if already logged in */}
+          {/* Login Redirect to start page (first page of mainContentRoutes) if already logged in */}
           <Route path={ROUTE_NAMES.login} exact>
-            {isLoggedIn ? <Redirect to={ROUTE_NAMES.journeyStart} /> : <AuthPage />}
+            {isLoggedIn ? <Redirect to={mainContentRoutes[0].path} /> : <AuthPage />}
           </Route>
 
           {/* Redirect to access denied page if user tries to access main pages without first logging in */}
@@ -118,7 +118,10 @@ const App = (props: any) => {
 
           {/* Fallback pages */}
           <Route path={ROUTE_NAMES.accessDenied} exact component={AccessDeniedPage} />
-          <Route path="*" component={NotFoundPage} />
+          <Route path={ROUTE_NAMES.notFound} exact component={NotFoundPage} />
+          <Route path="*">
+            <Redirect to={ROUTE_NAMES.notFound} />
+          </Route>
         </Suspense>
       </Switch>
 
