@@ -1,15 +1,26 @@
+// Hooks 
+import { useSelector} from "react-redux";
+
+// App Navigation
 import { ROUTE_NAMES } from "routes/routes";
 import { useHistory } from "react-router-dom";
 
+// Layout
 import Page from "components/layout/Page/Page";
+
+// Component UI
 import { Typography } from "@material-ui/core";
 import AlertButton from "components/layout/AlertButton";
 import { ImageList, ImageListItem } from "@material-ui/core";
 
+// Styles
 import { makeStyles } from "@material-ui/styles";
 
 // Assets
 import doubleChinBeb from "assets/double-chin-beb.jpg"
+
+// Data retrival / posting
+import { getLoginStatusSelector } from "selectors/selectors";
 
 
 const AccessDeniedPage = (props: any) => {
