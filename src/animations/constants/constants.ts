@@ -7,6 +7,12 @@ export const fadeVariant: FADE_MOTION = {
   transition: { ease: "linear", duration: ANIMATION_DURATION },
 };
 
+export const springVariant: FADE_MOTION = {
+    initial: { scale: 0 },
+    animate: { scale: 1 },
+    transition: { type: "spring", damping: 3, delay: ANIMATION_DURATION * 2 }
+}
+
 interface FADE_MOTION {
   initial: object;
   animate: object;

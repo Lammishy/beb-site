@@ -23,6 +23,9 @@ import bebSleeping from "assets/sleeping-beb-1.jpg"
 import { ReactComponent as DevilSvgIcon } from "assets/icons/devil.svg";
 import { ReactComponent as AngelSvgIcon } from "assets/icons/angel.svg";
 
+// Animation
+import MotionWrapper from "animations/MotionWrapper";
+
 const DevilIcon = (props: any) => {
     return <SvgIcon {...props}>
         <DevilSvgIcon />
@@ -82,13 +85,16 @@ const NotFoundPage = (props: any) => {
                 You seem to have stumbled upon a page that does not exist.
             </Typography>
 
-            <div className={classes.root}>
-                <ImageList rowHeight={200} gap={1} className={classes.imageList}>
-                    <ImageListItem key={69} cols={2} rows={2}>
-                        <img src={bebSleeping} alt="sleeping-beb" />
-                    </ImageListItem>
-                </ImageList>
-            </div>
+            <MotionWrapper spring={true}>
+                <div className={classes.root}>
+                    <ImageList rowHeight={200} gap={1} className={classes.imageList}>
+                        <ImageListItem key={69} cols={2} rows={2}>
+                            <img src={bebSleeping} alt="sleeping-beb" />
+                        </ImageListItem>
+                    </ImageList>
+                </div>
+            </MotionWrapper>
+
 
             <ButtonGroup variant="contained">
                 <AlertButton onClick={goBackToHomePageHandler} startIcon={<AngelIcon />} color="primary">

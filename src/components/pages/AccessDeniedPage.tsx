@@ -16,6 +16,9 @@ import { ImageList, ImageListItem } from "@material-ui/core";
 // Styles
 import { makeStyles } from "@material-ui/styles";
 
+// Animation
+import MotionWrapper from "animations/MotionWrapper";
+
 // Assets
 import doubleChinBeb from "assets/double-chin-beb.jpg"
 
@@ -32,7 +35,7 @@ const AccessDeniedPage = (props: any) => {
             fontWeight: 700
         }
     }))();
-    
+
     const classes = makeStyles(_ => ({
         root: {
             display: "flex",
@@ -63,13 +66,15 @@ const AccessDeniedPage = (props: any) => {
                 LEAVE AT ONCE!!
             </Typography>
 
-            <div className={classes.root}>
-                <ImageList rowHeight={200} gap={1} className={classes.imageList}>
-                    <ImageListItem key={69} cols={2} rows={2}>
-                        <img src={doubleChinBeb} alt="double-chin" />
-                    </ImageListItem>
-                </ImageList>
-            </div>
+            <MotionWrapper spring={true}>
+                <div className={classes.root}>
+                    <ImageList rowHeight={200} gap={1} className={classes.imageList}>
+                        <ImageListItem key={69} cols={2} rows={2}>
+                            <img src={doubleChinBeb} alt="double-chin" />
+                        </ImageListItem>
+                    </ImageList>
+                </div>
+            </MotionWrapper>
 
             {!isLoggedIn && <Typography variant="h6" className={h2Styles.root}>
                 Do you not realize you are not logged in!!

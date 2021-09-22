@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 
 // Styles
 import { makeStyles } from "@material-ui/core/styles";
-import FadeMotionWrapper from "animations/FadeMotionWrapper";
+import MotionWrapper from "animations/MotionWrapper";
 
 const useStyles = makeStyles({
     root: {
@@ -27,11 +27,11 @@ const Page = ({ children, animate = true }: { children: any, animate?: boolean }
         <>
             {animate ?
                 <Container className={classes.root} >
-                    <FadeMotionWrapper>
+                    <MotionWrapper>
                         <Container className={classes.root} component="section">
                             {children}
                         </Container>
-                    </FadeMotionWrapper>
+                    </MotionWrapper>
                 </Container> :
                 <Container className={classes.root} component="section">
                     {children}
