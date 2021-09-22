@@ -29,7 +29,7 @@ const DevilIcon = (props: any) => {
     </SvgIcon>
 }
 
-const AngelIcon = (props: any) => {
+export const AngelIcon = (props: any) => {
     return <SvgIcon {...props}>
         <AngelSvgIcon />
     </SvgIcon>
