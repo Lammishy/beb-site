@@ -28,22 +28,28 @@ const ThirdPage = (props: any) => {
     },
   }))();
 
-  const createIncrementingDuration = ((num: number = 4) => {
+  const createIncrementingDuration = ((num: number = 4, incrementer = 4) => {
     /**
      * Function that serves as a generator that saves and increases a number wheenver it is run again
      */
     return () => {
       const n = num; // to return the first instance of num (number 4)
-      num = num + num; // save new value of num, store it in function above.
+      num = num + incrementer; // save new value of num, store it in function above.
       return n;
     };
   })();
 
   return (
     <Page>
-      <Typography variant="h2" className={classes.center}>
-        <b>She doesn't even get fat from it.</b>
-      </Typography>
+      <MotionWrapper
+        transition={{
+          delay: ANIMATION_DURATION * createIncrementingDuration(),
+        }}
+      >
+        <Typography variant="h1" className={classes.center}>
+          <b>She doesn't even get fat from it.</b>
+        </Typography>
+      </MotionWrapper>
 
       <br />
       <MotionWrapper
@@ -51,7 +57,7 @@ const ThirdPage = (props: any) => {
           delay: ANIMATION_DURATION * createIncrementingDuration(),
         }}
       >
-        <Typography variant="h2" className={classes.center}>
+        <Typography variant="h1" className={classes.center}>
           She will continue to eat
           <MotionWrapper
             transition={{

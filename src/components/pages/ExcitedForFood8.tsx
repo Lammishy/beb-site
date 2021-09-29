@@ -9,16 +9,6 @@ import Page from "components/layout/Page/Page";
 
 const ThirdPage = (props: any) => {
   const classes = makeStyles((_) => ({
-    root: {
-      display: "flex",
-      justifyContent: "space-around",
-      marginBottom: "40px",
-      overflow: "hidden",
-    },
-    imageList: {
-      width: 500,
-      height: 450,
-    },
     center: {
       textAlign: "center",
     },
