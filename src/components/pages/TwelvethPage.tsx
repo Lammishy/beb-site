@@ -16,7 +16,7 @@ const TwelvethPage = (props: any) => {
     return (
         <Page>
             <Typography variant="h1" className={classes.center}>
-                <b>Found it</b>
+                <b>Found it.</b>
             </Typography>
         </Page>
     )
