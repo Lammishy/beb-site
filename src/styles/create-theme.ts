@@ -1,4 +1,4 @@
-import { createTheme } from "@material-ui/core/styles";
+import { createTheme, responsiveFontSizes } from "@material-ui/core/styles";
 import { red } from "@material-ui/core/colors";
 
 // Refer to below site for picking theme colors
@@ -19,7 +19,7 @@ const fontFams = {
     roboto: "'Roboto', sans-serif;"
 };
 
-const theme = createTheme({
+let theme = createTheme({
     overrides: {
         MuiCssBaseline: {
             "@global": {
@@ -47,7 +47,9 @@ const theme = createTheme({
     typography: {
         fontFamily: fontFams.montserrat
     }
-})
+});
+
+theme = responsiveFontSizes(theme);
 
 export const alertButtonTheme = createTheme({
     palette: {
