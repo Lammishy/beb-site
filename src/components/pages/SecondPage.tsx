@@ -1,13 +1,16 @@
 import { Typography } from "@material-ui/core";
 import Page from "components/layout/Page/Page";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 const SecondPage = (props: any) => {
-    const hugeFont = makeStyles({
+    const hugeFont = makeStyles((theme) => ({
         xl: {
-            fontSize: "7rem"
+            fontSize: "14rem",
+            [theme.breakpoints.down("xs")]: {
+                fontSize: "7rem"
+            }
         }
-    })();
+    }))();
     return (
         <Page>
             <Typography variant="h1" className={hugeFont.xl}>
