@@ -6,7 +6,7 @@ import { fadeVariant, springVariant } from "animations/constants/constants";
  * Animates Component that is wrapped in this Component
  */
 const MotionWrapper = (props: any) => {
-    const { children, fade = true, spring } = props;
+    const { children, fade = true, spring, ...rest } = props;
     
     let variantToAnimate;
     if (fade) {
@@ -19,7 +19,9 @@ const MotionWrapper = (props: any) => {
 
     return (
         <motion.div
-            {...variantToAnimate}>
+            {...variantToAnimate}
+            {...rest}
+            >
             {children}
         </motion.div>
     );
