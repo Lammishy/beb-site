@@ -39,11 +39,11 @@ let theme = createTheme({
     },
     MuiCardMedia: {
       root: {
-        width: 500,
-        height: 400,
+        width: "100%",
+        height: 550,
         [breakpoints.down("xs")]: {
-          width: 300,
-          height: 250,
+          width: "100%",
+          height: 400,
         },
         marginBottom: "30px"
       },
