@@ -22,13 +22,25 @@ const ThirdPage = (props: any) => {
     },
   }))();
 
+  const incrementDuration = ((num: number = 4) => {
+    return () => {
+      let n = num;
+      num = num + num;
+      return n;
+    };
+  })();
+
   return (
     <Page>
-      <MotionWrapper>
+      <MotionWrapper
+        transition={{ delay: ANIMATION_DURATION * incrementDuration() }}
+      >
         <CardMedia image={bebBeforeFood} component="img" />
       </MotionWrapper>
 
-      <MotionWrapper transition={{ delay: ANIMATION_DURATION * 3 }}>
+      <MotionWrapper
+        transition={{ delay: ANIMATION_DURATION * incrementDuration() }}
+      >
         <Typography variant="h3" className={classes.center}>
           Look at this face. Pleasant, isn't it? Happy and all.
         </Typography>

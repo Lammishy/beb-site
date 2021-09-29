@@ -44,7 +44,7 @@ const ThirdPage = (props: any) => {
           <MotionWrapper
             transition={{ delay: ANIMATION_DURATION * incrementDuration() }}
           >
-            hide your seabasses
+            hide your seabasses.
           </MotionWrapper>
         </b>
       </Typography>
