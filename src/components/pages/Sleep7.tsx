@@ -37,7 +37,7 @@ const Sleep7 = (props: any) => {
 
   return (
     <Page>
-      <Typography variant="h3" className={classes.center}>
+      <Typography variant="h2" className={classes.center}>
         She goes ahead and does what{" "}
         <b>
           <i>you</i>
