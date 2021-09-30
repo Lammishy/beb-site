@@ -49,3 +49,11 @@ const darkTheme = {
 
 3. Adding SVGs
 - https://create-react-app.dev/docs/adding-images-fonts-and-files/
+
+4. Preserving image aspect ratios  
+- https://www.kirupa.com/html5/preserve_an_image_aspect_ratio_when_resized.htm  
+
+## Lesson Learned
+- width: 100%
+- height: auto
+- set a max-height property if image is overflowing
