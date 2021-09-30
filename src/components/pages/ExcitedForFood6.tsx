@@ -41,15 +41,9 @@ const ThirdPage = (props: any) => {
 
   return (
     <Page>
-      <MotionWrapper
-        transition={{
-          delay: ANIMATION_DURATION * createIncrementingDuration(),
-        }}
-      >
-        <Typography variant="h1" className={classes.center}>
-          <b>She doesn't even get fat from it.</b>
-        </Typography>
-      </MotionWrapper>
+      <Typography variant="h1" className={classes.center}>
+        <b>She doesn't even get fat from it.</b>
+      </Typography>
 
       <br />
       <MotionWrapper
