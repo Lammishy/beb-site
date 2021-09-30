@@ -29,7 +29,7 @@ const Sleep4 = (props: any) => {
   const gifStyle = makeStyles((theme) => ({
     root: {
       width: "100%",
-      height: 700,
+      height: 900,
       [theme.breakpoints.down("xs")]: {
         width: "100%",
         height: 400,
