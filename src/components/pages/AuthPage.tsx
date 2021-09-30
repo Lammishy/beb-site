@@ -25,6 +25,7 @@ const AuthPage = (props: any) => {
   const subtitleStyles = makeStyles({
     root: {
       position: "fixed",
+      padding: "0 20px",
       bottom: "20px",
       left: 0,
       textAlign: "center",
