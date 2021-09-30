@@ -35,6 +35,15 @@ const AccessDeniedPage = (props: any) => {
     },
   }))();
 
+  const imgStyle = makeStyles((theme) => ({
+    root: {
+      [theme.breakpoints.down("xs")]: {
+        width: "100%",
+        height: 200
+      }
+    }
+  }))();
+
   let history = useHistory();
   const isLoggedIn = useSelector(getLoginStatusSelector).isLoggedIn;
 
@@ -53,7 +62,7 @@ const AccessDeniedPage = (props: any) => {
       </Typography>
 
       <MotionWrapper spring={true}>
-        <CardMedia image={doubleChinBeb} component="img" />
+        <CardMedia image={doubleChinBeb} component="img" className={imgStyle.root} />
       </MotionWrapper>
 
       {!isLoggedIn && (

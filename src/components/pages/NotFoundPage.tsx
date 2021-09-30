@@ -54,6 +54,15 @@ const NotFoundPage = (props: any) => {
     },
   }))();
 
+  const imgStyle = makeStyles((theme) => ({
+    root: {
+      [theme.breakpoints.down("xs")]: {
+        width: "100%",
+        height: 300
+      }
+    }
+  }))();
+
   let history = useHistory();
 
   const goBackToHomePageHandler = (event: any) => {
@@ -78,7 +87,7 @@ const NotFoundPage = (props: any) => {
       </Typography>
 
       <MotionWrapper transition={{ delay: ANIMATION_DURATION * 3 }}>
-        <CardMedia image={bebSleeping} component="img" />
+        <CardMedia image={bebSleeping} component="img" className={imgStyle.root} />
       </MotionWrapper>
 
       <ButtonGroup variant="contained">
