@@ -40,10 +40,11 @@ let theme = createTheme({
     MuiCardMedia: {
       root: {
         width: "100%",
-        height: 550,
+        maxHeight: 800,
+        height: "auto",
         [breakpoints.down("xs")]: {
           width: "100%",
-          height: 400,
+          height: "auto",
         },
         marginBottom: "30px"
       },
