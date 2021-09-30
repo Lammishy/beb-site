@@ -20,7 +20,7 @@ const Sleep3 = (props: any) => {
 
   return (
     <Page>
-      <Typography variant="h2" className={classes.center}>
+      <Typography variant="h1" className={classes.center}>
         <b>Imagine working from 8am</b>
         <MotionWrapper transition={{ delay: ANIMATION_DURATION * 4.5 }}>
           and finally going to bed at 3
