@@ -32,7 +32,9 @@ const ThirdPage = (props: any) => {
 
   return (
     <Page>
-      <CardMedia image={bebBeforeFood} component="img" />
+      <MotionWrapper transition={{ delay: ANIMATION_DURATION * incrementDuration() }}>
+        <CardMedia image={bebBeforeFood} component="img" />
+      </MotionWrapper>
 
       <MotionWrapper
         transition={{ delay: ANIMATION_DURATION * incrementDuration() }}
