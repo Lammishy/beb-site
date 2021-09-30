@@ -9,15 +9,16 @@ const AccessDeniedPage = React.lazy(() => import("components/pages/AccessDeniedP
 const JourneyStartPage = React.lazy(() => import("components/pages/JourneyStartPage"));
 const SecondPage = React.lazy(() => import("components/pages/SecondPage"));
 const ThirdPage = React.lazy(() => import("components/pages/ThirdPage"));
-const NotFoundPage = React.lazy(() => import("components/pages/NotFoundPage"));
+const ExcitedForFood0 = React.lazy(
+  () => import("components/pages/ExcitedForFood0")
+);
 
 export const ROUTE_NAMES = {
   login: "/login",
   journeyStart: "/journey-start",
   secondPage: "/second-page",
   thirdPage: "/third-page",
-  todo: "/todo",
-  intro: "/intro",
+  excitedForFood0: "/excited-for-food-0",
   accessDenied: "/access-denied",
   notFound: "/not-found",
 };
@@ -30,7 +31,11 @@ const routes: ComponentRoute[] = [
   {
     path: ROUTE_NAMES.journeyStart,
     Component: JourneyStartPage,
-    pageNum: 1,
+  // {
+  //   path: ROUTE_NAMES.excitedForFood0,
+  //   Component: ExcitedForFood0,
+  //   pageNum: incrementPageNum(),
+  // },
   },
   {
     path: ROUTE_NAMES.secondPage,
