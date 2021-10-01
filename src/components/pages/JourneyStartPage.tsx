@@ -16,7 +16,7 @@ const JourneyStartPage = (props: any) => {
     return <Page>
         <Typography variant="h1" className={classes.center}>
             <b>Top reasons</b> 
-            <MotionWrapper transition={{delay: ANIMATION_DURATION * 4.5}}>
+            <MotionWrapper transition={{delay: ANIMATION_DURATION * 7}}>
                 for why the beb should stop stealing the beeb's food
             </MotionWrapper>
         </Typography>
