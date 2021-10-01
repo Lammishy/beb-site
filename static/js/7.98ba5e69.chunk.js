@@ -1,0 +1,2 @@
+(this["webpackJsonpbeb-site"]=this["webpackJsonpbeb-site"]||[]).push([[7],{448:function(e,t,c){"use strict";c.r(t);var n=c(204),s=c(524),a=c(54),r=c(3);t.default=function(e){var t=Object(n.a)({center:{textAlign:"center"}})();return Object(r.jsx)(a.a,{children:Object(r.jsx)(s.a,{variant:"h2",className:t.center,children:"Ah yes, okay."})})}}}]);
+//# sourceMappingURL=7.98ba5e69.chunk.js.map

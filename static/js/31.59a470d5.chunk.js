@@ -1,0 +1,2 @@
+(this["webpackJsonpbeb-site"]=this["webpackJsonpbeb-site"]||[]).push([[31],{466:function(e,t,n){"use strict";n.r(t);var r=n(524),s=n(425),c=n(54),i=n(3);t.default=function(e){var t=Object(s.a)((function(e){return{center:{textAlign:"center"}}}))();return Object(i.jsx)(c.a,{children:Object(i.jsx)(r.a,{variant:"h1",className:t.center,children:Object(i.jsx)("b",{children:"After she's done disturbing you and you've dealt with said energy"})})})}}}]);
+//# sourceMappingURL=31.59a470d5.chunk.js.map

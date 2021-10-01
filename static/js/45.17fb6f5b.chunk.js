@@ -1,0 +1,2 @@
+(this["webpackJsonpbeb-site"]=this["webpackJsonpbeb-site"]||[]).push([[45],{469:function(e,t,n){"use strict";n.r(t);var s=n(425),c=n(524),i=n(54),a=n(3);t.default=function(e){var t=Object(s.a)({center:{textAlign:"center"}})();return Object(a.jsx)(i.a,{children:Object(a.jsxs)(c.a,{variant:"h1",className:t.center,children:[Object(a.jsx)("b",{children:"1"})," She's extra sensitive and feeling."]})})}}}]);
+//# sourceMappingURL=45.17fb6f5b.chunk.js.map

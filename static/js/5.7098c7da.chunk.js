@@ -1,0 +1,2 @@
+(this["webpackJsonpbeb-site"]=this["webpackJsonpbeb-site"]||[]).push([[5],{536:function(e,t,c){"use strict";c.r(t);var i=c(11),s=c.p+"static/media/edna-dance-10fps.b6bcbc1e.gif",a=c(527),b=c(3);t.default=function(e){return Object(b.jsx)(a.a,Object(i.a)({image:s,component:"img"},e))}}}]);
+//# sourceMappingURL=5.7098c7da.chunk.js.map

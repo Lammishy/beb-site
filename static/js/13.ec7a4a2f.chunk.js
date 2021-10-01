@@ -1,0 +1,2 @@
+(this["webpackJsonpbeb-site"]=this["webpackJsonpbeb-site"]||[]).push([[13],{457:function(t,e,n){"use strict";n.r(e);var i=n(524),r=n(204),s=n(54),a=n(3);e.default=function(t){var e=Object(r.a)((function(t){return{root:{display:"flex",justifyContent:"space-around",marginBottom:"40px",overflow:"hidden"},imageList:{width:500,height:450},center:{textAlign:"center"}}}))();return Object(a.jsx)(s.a,{children:Object(a.jsx)(i.a,{variant:"h1",className:e.center,children:Object(a.jsx)("b",{children:"And worst part is"})})})}}}]);
+//# sourceMappingURL=13.ec7a4a2f.chunk.js.map
