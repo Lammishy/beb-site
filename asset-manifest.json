@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/beb-site/static/css/main.8cfeae24.chunk.css",
-    "main.js": "/beb-site/static/js/main.ee19e7fe.chunk.js",
-    "main.js.map": "/beb-site/static/js/main.ee19e7fe.chunk.js.map",
+    "main.js": "/beb-site/static/js/main.73730a09.chunk.js",
+    "main.js.map": "/beb-site/static/js/main.73730a09.chunk.js.map",
     "runtime-main.js": "/beb-site/static/js/runtime-main.7365d103.js",
     "runtime-main.js.map": "/beb-site/static/js/runtime-main.7365d103.js.map",
     "static/js/2.4e2a62e7.chunk.js": "/beb-site/static/js/2.4e2a62e7.chunk.js",
@@ -132,6 +132,6 @@
     "static/js/runtime-main.7365d103.js",
     "static/js/2.4e2a62e7.chunk.js",
     "static/css/main.8cfeae24.chunk.css",
-    "static/js/main.ee19e7fe.chunk.js"
+    "static/js/main.73730a09.chunk.js"
   ]
 }
