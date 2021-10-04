@@ -40,7 +40,6 @@ const SignOut = (props: any) => {
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
-      console.log("this is run");
     };
 
     window.addEventListener("resize", handleResize);
