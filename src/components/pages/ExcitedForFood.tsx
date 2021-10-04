@@ -22,6 +22,14 @@ const ThirdPage = (props: any) => {
     },
   }))();
 
+  const imageStyles = makeStyles((theme) => ({
+    root: {
+      [theme.breakpoints.down("xs")]: {
+        maxHeight: 370
+      }
+    }
+  }))();
+
   const incrementDuration = ((num: number = 4) => {
     return () => {
       let n = num;
@@ -33,7 +41,7 @@ const ThirdPage = (props: any) => {
   return (
     <Page>
       <MotionWrapper transition={{ delay: ANIMATION_DURATION * incrementDuration() }}>
-        <CardMedia image={bebBeforeFood} component="img" />
+        <CardMedia image={bebBeforeFood} component="img" className={imageStyles.root} />
       </MotionWrapper>
 
       <MotionWrapper
