@@ -3,8 +3,8 @@
     "main.css": "/beb-site/static/css/main.8cfeae24.chunk.css",
     "main.js": "/beb-site/static/js/main.73730a09.chunk.js",
     "main.js.map": "/beb-site/static/js/main.73730a09.chunk.js.map",
-    "runtime-main.js": "/beb-site/static/js/runtime-main.7365d103.js",
-    "runtime-main.js.map": "/beb-site/static/js/runtime-main.7365d103.js.map",
+    "runtime-main.js": "/beb-site/static/js/runtime-main.19b3c0c8.js",
+    "runtime-main.js.map": "/beb-site/static/js/runtime-main.19b3c0c8.js.map",
     "static/js/2.4e2a62e7.chunk.js": "/beb-site/static/js/2.4e2a62e7.chunk.js",
     "static/js/2.4e2a62e7.chunk.js.map": "/beb-site/static/js/2.4e2a62e7.chunk.js.map",
     "static/js/3.829708ad.chunk.js": "/beb-site/static/js/3.829708ad.chunk.js",
@@ -59,8 +59,8 @@
     "static/js/27.8ca77ec4.chunk.js.map": "/beb-site/static/js/27.8ca77ec4.chunk.js.map",
     "static/js/28.35737523.chunk.js": "/beb-site/static/js/28.35737523.chunk.js",
     "static/js/28.35737523.chunk.js.map": "/beb-site/static/js/28.35737523.chunk.js.map",
-    "static/js/29.9a02ef48.chunk.js": "/beb-site/static/js/29.9a02ef48.chunk.js",
-    "static/js/29.9a02ef48.chunk.js.map": "/beb-site/static/js/29.9a02ef48.chunk.js.map",
+    "static/js/29.0bdd70d0.chunk.js": "/beb-site/static/js/29.0bdd70d0.chunk.js",
+    "static/js/29.0bdd70d0.chunk.js.map": "/beb-site/static/js/29.0bdd70d0.chunk.js.map",
     "static/js/30.640fa8dc.chunk.js": "/beb-site/static/js/30.640fa8dc.chunk.js",
     "static/js/30.640fa8dc.chunk.js.map": "/beb-site/static/js/30.640fa8dc.chunk.js.map",
     "static/js/31.59a470d5.chunk.js": "/beb-site/static/js/31.59a470d5.chunk.js",
@@ -129,7 +129,7 @@
     "static/media/sleeping-beb-1.548018ca.jpg": "/beb-site/static/media/sleeping-beb-1.548018ca.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.7365d103.js",
+    "static/js/runtime-main.19b3c0c8.js",
     "static/js/2.4e2a62e7.chunk.js",
     "static/css/main.8cfeae24.chunk.css",
     "static/js/main.73730a09.chunk.js"
