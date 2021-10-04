@@ -111,7 +111,7 @@ const incrementPageNum = ((pageNum: number = 1) => {
 const SITE_PREFIX = "/beb-site";
 
 export const ROUTE_NAMES = {
-  login: SITE_PREFIX + "login",
+  login: SITE_PREFIX + "/login",
   firstPage: SITE_PREFIX + "/first-page",
   secondPage: SITE_PREFIX + "/second-page",
   thirdPage: SITE_PREFIX + "/third-page",
