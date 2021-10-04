@@ -15,6 +15,9 @@ const Woa6 = (props: any) => {
     center: {
       textAlign: "center",
       marginBottom: "20px",
+      [theme.breakpoints.down("xs")]: {
+        marginBottom: 0
+      }
     },
   }))();
 
