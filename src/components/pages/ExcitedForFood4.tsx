@@ -19,7 +19,7 @@ const ThirdPage = (props: any) => {
   const classes = makeStyles((theme) => ({
     center: {
       textAlign: "center",
-      marginBottom: "10px",
+      marginBottom: "5px",
       [theme.breakpoints.down("lg")]: {
         fontSize: "2rem"
       },
