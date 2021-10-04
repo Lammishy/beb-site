@@ -19,6 +19,23 @@ const Woa6 = (props: any) => {
     center: {
       textAlign: "center",
       marginBottom: "20px",
+      [theme.breakpoints.down("lg")]: {
+        fontSize: "3rem"
+      },
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "2rem",
+      },
+    },
+  }))();
+
+  const h4Styles = makeStyles((theme) => ({
+    root: {
+      [theme.breakpoints.down("lg")]: {
+        fontSize: "2rem"
+      },
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "1.2rem",
+      },
     },
   }))();
 
@@ -26,11 +43,12 @@ const Woa6 = (props: any) => {
     root: {
       width: "100%",
       height: "auto",
+      marginBottom: "20px",
       [theme.breakpoints.down("xs")]: {
         width: "100%",
-        height: 400
-      }
-    }
+        height: 400,
+      },
+    },
   }))();
 
   const incrementDuration = ((
@@ -49,21 +67,24 @@ const Woa6 = (props: any) => {
     <Page>
       <Typography variant="h1" className={classes.center}>
         <b>5</b> Also, that smile.
-
-        <MotionWrapper transition={{ delay: incrementDuration() }}>
-            <CardMedia
-              image={goddamnSmile}
-              component="img"
-              className={imgStyle.root}
-            />
-        </MotionWrapper>
-
-        <MotionWrapper transition={{ delay: incrementDuration() }}>
-          <Typography variant="h4" className={classes.center}>
-            K la k la quite cute. Me likey.
-          </Typography>
-        </MotionWrapper>
       </Typography>
+
+      <MotionWrapper transition={{ delay: incrementDuration() }}>
+        <CardMedia
+          image={goddamnSmile}
+          component="img"
+          className={imgStyle.root}
+        />
+      </MotionWrapper>
+
+      <MotionWrapper transition={{ delay: incrementDuration() }}>
+        <Typography
+          variant="h4"
+          className={`${classes.center} + ${h4Styles.root}`}
+        >
+          K la k la quite cute. Me likey.
+        </Typography>
+      </MotionWrapper>
     </Page>
   );
 };
