@@ -43,7 +43,8 @@ const AccessDeniedPage = (props: any) => {
     root: {
       [theme.breakpoints.down("xs")]: {
         width: "100%",
-        height: 200
+        height: "auto",
+        maxHeight: 400
       }
     }
   }))();
