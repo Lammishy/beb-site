@@ -15,7 +15,18 @@ const Woa6 = (props: any) => {
     center: {
       textAlign: "center",
       marginBottom: "20px",
+      [theme.breakpoints.down("xs")]: {
+        marginBottom: 0
+      }
     },
+  }))();
+
+  const h1Styles = makeStyles(theme => ({
+    root: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "3rem"
+      }
+    }
   }))();
 
   const incrementDuration = ((
@@ -32,7 +43,7 @@ const Woa6 = (props: any) => {
 
   return (
     <Page>
-      <Typography variant="h1" className={classes.center}>
+      <Typography variant="h1" className={`${classes.center} + ${h1Styles.root}`}>
         <b>It's even online for the whole world to see.</b>
       </Typography>
 
