@@ -20,10 +20,18 @@ const ThirdPage = (props: any) => {
     center: {
       textAlign: "center",
       marginBottom: "20px",
+      [theme.breakpoints.down("lg")]: {
+        fontSize: "2rem"
+      },
+      [theme.breakpoints.down("xs")]: {
+        marginBottom: "0",
+        fontSize: "1.5rem"
+      }
     },
     root: {
-      width: "100%",
-      height: 800,
+      [theme.breakpoints.down("lg")]: {
+        maxHeight: 500
+      },
       [theme.breakpoints.down("xs")]: {
         width: "100%",
         height: 400,
