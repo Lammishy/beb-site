@@ -24,7 +24,8 @@ const Sleep4 = (props: any) => {
       textAlign: "center",
       marginBottom: "40px",
       [theme.breakpoints.down("xs")]: {
-        fontSize: "1.5rem"
+        fontSize: "1.5rem",
+        marginBottom: "10px"
       }
     },
   }))();
@@ -38,7 +39,7 @@ const Sleep4 = (props: any) => {
       },
       [theme.breakpoints.down("xs")]: {
         width: "100%",
-        height: 350,
+        height: 380,
       },
     },
   }))();
