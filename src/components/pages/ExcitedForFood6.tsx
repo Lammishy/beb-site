@@ -6,13 +6,13 @@ import { ANIMATION_DURATION } from "animations/constants/constants";
 import { Typography } from "@material-ui/core";
 
 // Styles
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 // Layout
 import Page from "components/layout/Page/Page";
 
 const ThirdPage = (props: any) => {
-  const classes = makeStyles((_) => ({
+  const classes = makeStyles((theme) => ({
     root: {
       display: "flex",
       justifyContent: "space-around",
@@ -25,6 +25,9 @@ const ThirdPage = (props: any) => {
     },
     center: {
       textAlign: "center",
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "3rem"
+      }
     },
   }))();
 
