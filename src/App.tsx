@@ -89,13 +89,12 @@ const App = (props: any) => {
      * Prevents incorrect value of isLoggedIn value
      */
     // if login is false (on page refresh and store refreshes, or because user simply has not logged in before)
-    let userLoggedInBefore = sessionStorage.getItem("loginStatus"); // check if user has logged in before
+    let userLoggedInBefore = sessionStorage.getItem("loginStatus") || "false"; // check if user has logged in before
 
     // if user has logged in before, set isLoggedIn status to true
     // IMPORTANT. because on first render "isLoggedIn" would be FALSE (because loginReducer initial state is false)
     // therefore we manually set this to true here 
     // prevents AccessDeniedPage from rendering incorrectly
-
     let userLoggedInBeforeBool = userLoggedInBefore === "false" ? false : true; // convert to bool. sessionstorage only allows storing of string values
     isLoggedIn = userLoggedInBeforeBool ? true : false;
 
