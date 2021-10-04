@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -22,24 +24,40 @@ import makeShakeValidationErrorAnimation from "animations/shake-animation";
 const ShakeAnimationSignIn = makeShakeValidationErrorAnimation(SignIn);
 
 const AuthPage = (props: any) => {
-  const subtitleStyles = makeStyles({
+  const subtitleStyles = makeStyles((theme) => ({
     root: {
       position: "fixed",
-      padding: "0 20px",
-      bottom: "20px",
+      bottom: 0,
       left: 0,
+      padding: "0 20px 20px",
       textAlign: "center",
-      width: "100%"
+      width: "100%",
     },
-  })();
+  }))();
+
+  const [height, setHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    const onResize = () => {
+      setHeight(window.innerHeight);
+    };
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+    }
+  }, []);
+
   return (
     <Page>
       <ShakeAnimationSignIn />
       {/* <Button onClick={openDeadlineReminder} variant="contained" color="secondary"> Deadline </Button> */}
       <div className={subtitleStyles.root}>
-        <Typography variant="subtitle1">
-          Site has also been optimized for viewing on mobile (well, kinda). 
-        </Typography>
+        {height >= 590 && (
+          <Typography variant="subtitle1">
+            Site has also been optimized for viewing on mobile (well, kinda)
+          </Typography>
+        )}
       </div>
     </Page>
   );
