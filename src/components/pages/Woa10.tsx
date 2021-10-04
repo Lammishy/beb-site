@@ -18,6 +18,14 @@ const Woa6 = (props: any) => {
     },
   }))();
 
+  const h1Styles = makeStyles((theme) => ({
+    root: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "2.8rem"
+      }
+    }
+  }))();
+
   const incrementDuration = ((
     timesLonger = 5,
     incrementer = 7,
@@ -32,7 +40,7 @@ const Woa6 = (props: any) => {
 
   return (
     <Page>
-      <Typography variant="h1" className={classes.center}>
+      <Typography variant="h1" className={`${classes.center} + ${h1Styles.root}`}>
         <b>8</b> You're also the <b>most invigorating</b> ball of energy.
       </Typography>
 
