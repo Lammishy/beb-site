@@ -27,11 +27,15 @@ import { getLoginStatusSelector } from "selectors/selectors";
 
 const AccessDeniedPage = (props: any) => {
   // Styles
-  const h2Styles = makeStyles((_) => ({
+  const h2Styles = makeStyles((theme) => ({
     root: {
       textAlign: "center",
       marginBottom: "50px",
       fontWeight: 700,
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "1.5rem",
+        marginBottom: "30px",
+      },
     },
   }))();
 
@@ -42,6 +46,14 @@ const AccessDeniedPage = (props: any) => {
         height: 200
       }
     }
+  }))();
+
+  const buttonStyles = makeStyles((theme) => ({
+    root: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "0.7rem"
+      }
+    },
   }))();
 
   let history = useHistory();
@@ -71,7 +83,7 @@ const AccessDeniedPage = (props: any) => {
         </Typography>
       )}
 
-      <AlertButton onClick={goBackToHomePageHandler}>
+      <AlertButton onClick={goBackToHomePageHandler} className={buttonStyles.root}>
         Go back to whence you came, plebian!!
       </AlertButton>
     </Page>
