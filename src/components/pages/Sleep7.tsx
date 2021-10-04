@@ -20,7 +20,24 @@ const Sleep7 = (props: any) => {
     center: {
       textAlign: "center",
       marginBottom: "30px",
+      [theme.breakpoints.down("lg")]: {
+        fontSize: "2.4rem"
+      },
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "1.5rem"
+      }
     },
+  }))();
+
+  const imgStyles = makeStyles((theme) => ({
+    root: {
+      [theme.breakpoints.down("lg")]: {
+        maxHeight: 480
+      },
+      [theme.breakpoints.down("xs")]: {
+        maxHeight: 380
+      }
+    }
   }))();
 
   const incrementDuration = ((
@@ -45,7 +62,7 @@ const Sleep7 = (props: any) => {
         should've been doing for the past 2 hours.
       </Typography>
       <MotionWrapper transition={{ delay: incrementDuration() }}>
-        <CardMedia image={bebAsleep} component="img" />
+        <CardMedia image={bebAsleep} component="img" className={imgStyles.root}/>
       </MotionWrapper>
     </Page>
   );
