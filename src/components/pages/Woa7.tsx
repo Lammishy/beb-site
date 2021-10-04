@@ -15,7 +15,19 @@ const Woa6 = (props: any) => {
     center: {
       textAlign: "center",
       marginBottom: "20px",
+      [theme.breakpoints.down("xs")]: {
+        marginBottom: 0,
+        fontSize: "2.7rem"
+      }
     },
+  }))();
+
+  const h4Styles = makeStyles((theme) => ({
+    root: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "1.5rem"
+      }
+    }
   }))();
 
   const incrementDuration = ((
@@ -39,7 +51,7 @@ const Woa6 = (props: any) => {
       <br />
       <br />
       <MotionWrapper transition={{ delay: incrementDuration() }}>
-        <Typography variant="h4" className={classes.center}>
+        <Typography variant="h4" className={`${classes.center} + ${h4Styles.root}`}>
           I understand that you have difficulties with your family.
         </Typography>
       </MotionWrapper>
@@ -47,7 +59,7 @@ const Woa6 = (props: any) => {
       <br />
       <br />
       <MotionWrapper transition={{ delay: incrementDuration() }}>
-        <Typography variant="h4" className={classes.center}>
+        <Typography variant="h4" className={`${classes.center} + ${h4Styles.root}`}>
           Actually, no. I'd never be able to fully understand.
         </Typography>
       </MotionWrapper>      
