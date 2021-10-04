@@ -46,21 +46,34 @@ export const AngelIcon = (props: any) => {
 
 const NotFoundPage = (props: any) => {
   // Styles
-  const h2Styles = makeStyles((_) => ({
+  const h2Styles = makeStyles((theme) => ({
     root: {
       textAlign: "center",
       marginBottom: "50px",
       fontWeight: 700,
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "1.5rem",
+        marginBottom: "30px",
+      },
+    },
+  }))();
+
+  const buttonStyles = makeStyles((theme) => ({
+    root: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "0.7rem"
+      }
     },
   }))();
 
   const imgStyle = makeStyles((theme) => ({
     root: {
+      maxHeight: 700,
       [theme.breakpoints.down("xs")]: {
         width: "100%",
-        height: 300
-      }
-    }
+        height: 300,
+      },
+    },
   }))();
 
   let history = useHistory();
@@ -87,7 +100,11 @@ const NotFoundPage = (props: any) => {
       </Typography>
 
       <MotionWrapper transition={{ delay: ANIMATION_DURATION * 3 }}>
-        <CardMedia image={bebSleeping} component="img" className={imgStyle.root} />
+        <CardMedia
+          image={bebSleeping}
+          component="img"
+          className={imgStyle.root}
+        />
       </MotionWrapper>
 
       <ButtonGroup variant="contained">
@@ -95,15 +112,17 @@ const NotFoundPage = (props: any) => {
           onClick={goBackToHomePageHandler}
           startIcon={<AngelIcon />}
           color="primary"
+          className={buttonStyles.root}
         >
-          Here, let me guide you back home
+            Here, let me guide you back home
         </AlertButton>
         <Button
           onClick={gotToRandomMainPage}
           color="secondary"
           endIcon={<DevilIcon />}
+          className={buttonStyles.root}
         >
-          Or.. would you prefer to explore..?
+            Or.. would you prefer to explore..?
         </Button>
       </ButtonGroup>
     </Page>
