@@ -34,7 +34,7 @@ const ThirdPage = (props: any) => {
       },
       [theme.breakpoints.down("xs")]: {
         width: "100%",
-        height: 400,
+        height: 420,
       },
     },
   }))();
