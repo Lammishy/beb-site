@@ -17,6 +17,30 @@ const Woa8 = (props: any) => {
     },
   })();
 
+  const h2Styles = makeStyles((theme) => ({
+    root: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "2rem"
+      }
+    }
+  }))();
+
+  const h3Styles = makeStyles((theme) => ({
+    root: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "1.5rem"
+      }
+    }
+  }))();
+
+  const h1Styles = makeStyles((theme) => ({
+    root: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "3rem"
+      }
+    }
+  }))();
+
   const incrementDuration = ((
     timesLonger = 5,
     incrementer = 10,
@@ -31,7 +55,7 @@ const Woa8 = (props: any) => {
 
   return (
     <Page>
-      <Typography variant="h2" className={classes.center}>
+      <Typography variant="h2" className={`${classes.center} + ${h2Styles.root}`}>
         <b>If you haven't already noticed</b>
       </Typography>
 
@@ -39,7 +63,7 @@ const Woa8 = (props: any) => {
       <br />
       <br />
       <MotionWrapper transition={{ delay: incrementDuration() }}>
-        <Typography variant="h3" className={classes.center}>
+        <Typography variant="h3" className={`${classes.center} + ${h3Styles.root}`}>
           It's a recurring trait <b>you possess</b> that you{" "}
           <b>apply to all aspects of your life.</b>
         </Typography>
@@ -49,7 +73,7 @@ const Woa8 = (props: any) => {
       <br />
       <br />
       <MotionWrapper transition={{ delay: incrementDuration() }}>
-        <Typography variant="h1" className={classes.center}>
+        <Typography variant="h1" className={`${classes.center} + ${h1Styles.root}`}>
           <b>You're doing great.</b>
         </Typography>
       </MotionWrapper>
