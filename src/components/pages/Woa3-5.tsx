@@ -11,11 +11,14 @@ import { Typography } from "@material-ui/core";
 import Page from "components/layout/Page/Page";
 
 const Woa3 = (props: any) => {
-  const classes = makeStyles({
+  const classes = makeStyles((theme) => ({
     center: {
       textAlign: "center",
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "1.5rem"
+      }
     },
-  })();
+  }))();
 
   const incrementDuration = ((
     timesLonger = 5,
