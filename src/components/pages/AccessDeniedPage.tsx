@@ -34,7 +34,7 @@ const AccessDeniedPage = (props: any) => {
       fontWeight: 700,
       [theme.breakpoints.down("xs")]: {
         fontSize: "1.5rem",
-        marginBottom: "30px",
+        marginBottom: "10px",
       },
     },
   }))();
