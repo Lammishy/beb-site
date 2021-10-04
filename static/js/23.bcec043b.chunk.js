@@ -1,0 +1,2 @@
+(this["webpackJsonpbeb-site"]=this["webpackJsonpbeb-site"]||[]).push([[23],{439:function(e,t,n){"use strict";n.r(t);var s=n(16),c=n(524),i=n(54),r=n(425),a=n(3);t.default=function(e){var t=Object(r.a)((function(e){return{xl:Object(s.a)({fontSize:"14rem"},e.breakpoints.down("xs"),{fontSize:"7rem"})}}))();return Object(a.jsx)(i.a,{children:Object(a.jsx)(c.a,{variant:"h1",className:t.xl,children:Object(a.jsx)("b",{children:"NOW"})})})}}}]);
+//# sourceMappingURL=23.bcec043b.chunk.js.map
