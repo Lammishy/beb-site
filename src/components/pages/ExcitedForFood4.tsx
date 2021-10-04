@@ -19,24 +19,23 @@ const ThirdPage = (props: any) => {
   const classes = makeStyles((theme) => ({
     center: {
       textAlign: "center",
-      marginBottom: "20px",
+      marginBottom: "10px",
       [theme.breakpoints.down("lg")]: {
         fontSize: "2rem"
       },
       [theme.breakpoints.down("xs")]: {
-        marginBottom: "0",
         fontSize: "1.3rem"
       }
     },
     root: {
+      marginBottom: "10px",
       [theme.breakpoints.down("lg")]: {
-        maxHeight: 500
+        maxHeight: 600
       },
       [theme.breakpoints.down("xs")]: {
-        marginBottom: "10px",
         width: "100%",
         height: "auto",
-        maxHeight: 500
+        maxHeight: 550
       },
     },
   }))();
@@ -54,8 +53,6 @@ const ThirdPage = (props: any) => {
       <Typography variant="h2" className={classes.center}>
         <b>This.</b>
       </Typography>
-
-      <br />
 
       <MotionWrapper
         transition={{ delay: ANIMATION_DURATION * incrementDuration() }}
