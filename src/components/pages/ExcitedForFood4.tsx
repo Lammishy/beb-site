@@ -25,7 +25,7 @@ const ThirdPage = (props: any) => {
       },
       [theme.breakpoints.down("xs")]: {
         marginBottom: "0",
-        fontSize: "1.2rem"
+        fontSize: "1.3rem"
       }
     },
     root: {
@@ -36,7 +36,7 @@ const ThirdPage = (props: any) => {
         marginBottom: "10px",
         width: "100%",
         height: "auto",
-        maxHeight: 440
+        maxHeight: 460
       },
     },
   }))();
