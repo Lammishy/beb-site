@@ -11,11 +11,15 @@ import { Typography } from "@material-ui/core";
 import Page from "components/layout/Page/Page";
 
 const Woa5 = (props: any) => {
-  const classes = makeStyles({
+  const classes = makeStyles((theme) => ({
     center: {
       textAlign: "center",
+      marginBottom: "60px",
+      [theme.breakpoints.down("xs")]: {
+        marginBottom: "25px"
+      }
     },
-  })();
+  }))();
 
   const incrementDuration = ((
     timesLonger = 5,
@@ -36,14 +40,14 @@ const Woa5 = (props: any) => {
         <Typography variant="body1" className={classes.center}>
           Ties in with sensitivity and extra-feeling!
         </Typography>
-        <br />
+
         <MotionWrapper transition={{ delay: incrementDuration() }}>
           <Typography variant="h4" className={classes.center}>
             Remember that time when you took a call at my place to check in on
             Felicia?
           </Typography>
         </MotionWrapper>
-        <br />
+
         <MotionWrapper transition={{ delay: incrementDuration() }}>
           <Typography variant="h4" className={classes.center}>
             I really respect and like that about you.
