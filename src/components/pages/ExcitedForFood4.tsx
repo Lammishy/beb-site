@@ -36,7 +36,7 @@ const ThirdPage = (props: any) => {
         marginBottom: "10px",
         width: "100%",
         height: "auto",
-        maxHeight: 460
+        maxHeight: 500
       },
     },
   }))();
