@@ -53,6 +53,9 @@ const darkTheme = {
 4. Preserving image aspect ratios  
 - https://www.kirupa.com/html5/preserve_an_image_aspect_ratio_when_resized.htm  
 
+5. Creating 404 Error Page for github pages
+- https://stackoverflow.com/a/59677657  
+It's freaking simple but ingenious. It's basically setting up your 404 page to be the same as your index.html page. So you're still serving your app when you land on an error page.
 ## Lesson Learned
 - width: 100%
 - height: auto
